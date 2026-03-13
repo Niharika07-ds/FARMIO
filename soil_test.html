@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farmio – Smart Soil & Crop Advisor</title>
+
+<style>
+body{
+  margin:0;
+  font-family:'Segoe UI', sans-serif;
+  background:linear-gradient(135deg,#e8f5e9,#f1f8e9,#e3f2fd,#fffde7);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+/* HEADER */
+.header{
+  background:linear-gradient(90deg,#2d6a4f,#40916c);
+  color:white;
+  text-align:center;
+  padding:30px 10px;
+}
+
+.header h1{
+  margin:0;
+  font-size:32px;
+}
+
+.subtitle{
+  margin-top:8px;
+  opacity:0.95;
+}
+
+.overlay{
+  padding:20px;
+  flex:1;
+}
+
+h2{
+  text-align:center;
+  color:#2d6a4f;
+}
+
+/* INFO BOX */
+.info-box{
+  max-width:900px;
+  margin:25px auto;
+  background:#ffffff;
+  padding:25px;
+  border-radius:18px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+  text-align:center;
+}
+
+.npk{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  flex-wrap:wrap;
+  margin-top:15px;
+}
+
+.npk span{
+  background:#40916c;
+  color:#fff;
+  padding:12px 20px;
+  border-radius:25px;
+  font-weight:bold;
+  transition:0.3s;
+}
+
+.npk span:hover{
+  transform:scale(1.1);
+}
+
+/* SOIL CARDS */
+.soil-container{
+  display:flex;
+  justify-content:center;
+  gap:25px;
+  flex-wrap:wrap;
+  margin:40px 0;
+}
+
+.soil-card{
+  width:260px;
+  background:#ffffff;
+  border-radius:16px;
+  padding:15px;
+  text-align:center;
+  box-shadow:0 8px 18px rgba(0,0,0,0.15);
+  transition:0.4s;
+}
+
+.soil-card:hover{
+  transform:translateY(-8px) scale(1.03);
+}
+
+.soil-card img{
+  width:100%;
+  height:150px;
+  object-fit:cover;
+  border-radius:12px;
+}
+
+/* CHARTS */
+.chart-container{
+  display:flex;
+  justify-content:center;
+  gap:40px;
+  flex-wrap:wrap;
+  margin:40px auto;
+}
+
+.circle-chart{
+  width:170px;
+  height:170px;
+  border-radius:50%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  font-weight:bold;
+  color:#1b4332;
+  animation:fadeIn 1.2s ease-in-out;
+}
+
+.circle-chart span{
+  font-size:32px;
+}
+
+.nitrogen{
+  background:conic-gradient(#74c69d 0deg 216deg,#eee 216deg);
+}
+.phosphorus{
+  background:conic-gradient(#f4a261 0deg 180deg,#eee 180deg);
+}
+.potassium{
+  background:conic-gradient(#e63946 0deg 252deg,#eee 252deg);
+}
+
+/* AI BOX */
+.ai-box{
+  max-width:800px;
+  margin:40px auto;
+  background:#ffffff;
+  padding:25px;
+  border-radius:18px;
+  text-align:center;
+  box-shadow:0 8px 18px rgba(0,0,0,0.15);
+}
+
+select,button{
+  padding:12px 22px;
+  border-radius:25px;
+  border:none;
+  margin:10px;
+  font-size:16px;
+}
+
+button{
+  background:#2d6a4f;
+  color:#fff;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  background:#1b4332;
+  transform:scale(1.05);
+}
+
+/* SUGGESTION BOX */
+.suggestion{
+  max-width:900px;
+  margin:50px auto;
+  background:#ffffff;
+  padding:30px;
+  border-radius:18px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+textarea{
+  width:100%;
+  height:160px;
+  padding:15px;
+  border-radius:12px;
+  border:1px solid #95d5b2;
+  font-size:16px;
+  resize:none;
+}
+
+#feedback{
+  margin-top:15px;
+  font-weight:bold;
+  color:#2d6a4f;
+  display:none;
+  animation:fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+
+/* FOOTER */
+.footer{
+  background:#000;
+  color:#fff;
+  text-align:center;
+  padding:20px 10px;
+}
+
+.footer .quote{
+  font-style:italic;
+  color:#d4ffd4;
+}
+
+/* GOOGLE TRANSLATE */
+#google_translate_element{
+  position:fixed;
+  top:10px;
+  right:10px;
+  background:#fff;
+  padding:6px;
+  border-radius:8px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+<h1>🌱 Farmio – Smart Soil & Crop Advisor</h1>
+<p class="subtitle">AI-powered soil analysis • Crop recommendation • Farmer support</p>
+</div>
+
+<div class="overlay">
+
+<!-- INFO -->
+<div class="info-box">
+<h2>🧪 Fertilizer Requirement Overview</h2>
+<p>Balanced fertilizer usage improves soil health, crop yield, and disease resistance.</p>
+<div class="npk">
+<span>Nitrogen – 60%</span>
+<span>Phosphorus – 50%</span>
+<span>Potassium – 70%</span>
+</div>
+</div>
+
+<!-- SOIL TYPES -->
+<h2>🌍 Soil Types & Suitable Crops</h2>
+<div class="soil-container">
+<div class="soil-card">
+<img src="Sandy Soil.jpg">
+<h3>Sandy Soil</h3>
+<p>Fast drainage</p>
+<b>Crops:</b> Groundnut, Carrot
+</div>
+
+<div class="soil-card">
+<img src="Loamy Soil.jpg">
+<h3>Loamy Soil</h3>
+<p>Best fertility</p>
+<b>Crops:</b> Wheat, Tomato
+</div>
+
+<div class="soil-card">
+<img src="Clayey Soil.jpg">
+<h3>Clayey Soil</h3>
+<p>High water retention</p>
+<b>Crops:</b> Rice, Sugarcane
+</div>
+</div>
+
+<!-- CHART -->
+<h2>📊 Soil Nutrient Status</h2>
+<div class="chart-container">
+<div class="circle-chart nitrogen">
+<span>60%</span>
+<p>Nitrogen</p>
+</div>
+
+<div class="circle-chart phosphorus">
+<span>50%</span>
+<p>Phosphorus</p>
+</div>
+
+<div class="circle-chart potassium">
+<span>70%</span>
+<p>Potassium</p>
+</div>
+</div>
+
+<!-- AI -->
+<div class="ai-box">
+<h2>🤖 AI Crop Recommendation</h2>
+
+<select id="soil">
+<option value="">Select Soil Type</option>
+<option value="sandy">Sandy</option>
+<option value="loamy">Loamy</option>
+<option value="clay">Clayey</option>
+</select>
+
+<select id="weather">
+<option value="">Select Weather</option>
+<option value="dry">Dry</option>
+<option value="moderate">Moderate</option>
+<option value="wet">Wet</option>
+</select>
+
+<br>
+<button onclick="recommend()">Get Recommendation</button>
+<p id="ai-result"></p>
+</div>
+
+<!-- SUGGESTION -->
+<div class="suggestion">
+<h2>💡 Farmer Suggestion Box</h2>
+
+<select id="suggestion-type">
+<option value="soil">Soil Issue</option>
+<option value="crop">Crop Problem</option>
+<option value="fertilizer">Fertilizer Requirement</option>
+<option value="general">General Advice</option>
+</select>
+
+<textarea id="suggestion-text" placeholder="Describe your issue or request..."></textarea>
+<button onclick="submitSuggestion()">Submit Suggestion</button>
+<p id="feedback">✅ Thank you! Your suggestion has been submitted.</p>
+</div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+<p class="quote">"If the farmer is rich, then so is the nation."</p>
+<p>© 2026 Farmio. All rights reserved.</p>
+</div>
+
+<!-- GOOGLE TRANSLATE -->
+<div id="google_translate_element"></div>
+
+<script>
+function googleTranslateElementInit(){
+new google.translate.TranslateElement({
+pageLanguage:'en',
+includedLanguages:'en,hi,mr,or,te'
+},'google_translate_element');
+}
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script>
+function recommend(){
+const soil=document.getElementById("soil").value;
+const weather=document.getElementById("weather").value;
+let result="";
+
+if(soil==="loamy" && weather==="moderate")
+result="🌾 Recommended crops: Wheat, Tomato, Maize";
+else if(soil==="sandy" && weather==="dry")
+result="🥜 Recommended crops: Groundnut, Millets";
+else if(soil==="clay" && weather==="wet")
+result="🌾 Recommended crops: Rice, Sugarcane";
+else
+result="🌱 Recommended crops: Pulses, Oilseeds";
+
+document.getElementById("ai-result").innerHTML=result;
+}
+
+function submitSuggestion(){
+const text=document.getElementById("suggestion-text").value.trim();
+if(text===""){
+alert("Please enter a suggestion before submitting.");
+return;
+}
+document.getElementById("feedback").style.display="block";
+document.getElementById("suggestion-text").value="";
+setTimeout(()=>{document.getElementById("feedback").style.display="none";},4000);
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script type="module" src="logout.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<style type="text/css">
+
+body{
+    background:
+      linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.15)),
+      url('istockphoto.jpg') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    font-family:'Times New Roman', Times, serif
+}
+
+/* ===== NAVBAR ONLY ===== */
+
+/* ================= NAVBAR FIXED & MODERN ================= */
+
+.header {
+    background-color: #000;
+    padding: 0 60px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+header {
+    margin-bottom: 0;   /* removes gap below navbar */
+}
+
+.welcome-services {
+    padding-top: 35px;  /* reduces space before Features */
+    margin-top: 0;
+}
+
+/* NAV LINKS – SAME FONT & SIZE */
+.header a,
+.subnav .subnavbtn {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;   /* 🔥 Increased size */
+    font-weight: 500;
+    color: #f1f1f1;
+    padding: 12px 18px;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 0.4px;
+    transition: all 0.3s ease;
+}
+
+/* HOVER EFFECT */
+.header a:hover,
+.subnav .subnavbtn:hover {
+    color: #6bff6b;
+}
+
+/* UNDERLINE ANIMATION */
+.header a,
+.subnav {
+    position: relative;
+}
+
+.header a::after,
+.subnav .subnavbtn::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0;
+    height: 2px;
+    background-color: #6bff6b;
+    transition: width 0.3s ease;
+}
+
+.header a:hover::after,
+.subnav .subnavbtn:hover::after {
+    width: 100%;
+}
+
+/* RIGHT SIDE NAV ALIGNMENT */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+/* ================= DROPDOWN FIX ================= */
+
+.subnav {
+    position: relative;
+}
+
+/* DROPDOWN MENU */
+.subnav-content {
+    display: none;
+    position: absolute;
+    top: 100%;                 /* 🔥 NO GAP */
+    left: 0;
+
+    background-color: #111;
+    min-width: 220px;
+    padding: 12px 0;
+    border-radius: 8px;
+
+    box-shadow: 0 18px 45px rgba(0,0,0,0.6);
+    z-index: 999;
+}
+
+/* DROPDOWN LINKS */
+.subnav-content a {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: #ddd;
+    padding: 10px 20px;
+    display: block;
+    transition: all 0.25s ease;
+}
+
+/* DROPDOWN HOVER */
+.subnav-content a:hover {
+    background-color: rgba(107, 255, 107, 0.15);
+    color: #6bff6b;
+}
+
+/* 🔥 KEEP DROPDOWN OPEN */
+.subnav:hover .subnav-content,
+.subnav-content:hover {
+    display: block;
+}
+.about-info-box {
+    background: rgba(255, 255, 255, 0.25);   /* more transparent */
+    backdrop-filter: blur(15px);             /* glass blur effect */
+    -webkit-backdrop-filter: blur(15px);     /* safari support */
+
+    padding: 60px 50px;
+    border-radius: 15px;
+
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+
+    margin: 40px auto;
+    max-width: 1000px;
+}
+
+.sec-title h2 {
+    font-size: 2.6em;
+    color: #000;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.sec-title h2 span {
+    color: #000;
+    font-weight: bold;
+}
+
+.bulleted-list {
+    list-style: none;     /* removes dots */
+    padding-left: 0;
+    font-size: 1.6em;
+    text-align: center;   /* center text */
+}
+
+.bulleted-list li {
+    margin-bottom: 20px;
+    line-height: 1.9;
+    text-align: center;
+}
+.about-info-box p {
+    font-size: 1.6em;
+    line-height: 1.9;
+}
+
+/* ===============================
+   WELCOME SERVICES SECTION
+================================= */
+
+.welcome-services {
+    padding: 8px 0 25px 0;
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background: linear-gradient(
+        to bottom,
+        #2d6a4f,
+        #40916c,
+        #1b4332
+    );
+
+    background-size: 300% 300%;
+    animation: gradientMove 8s ease infinite;
+}
+
+/* Animated Gradient */
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Title Styling */
+.welcome-services .sec-title h2 {
+    color: #000000;
+    font-size: 3em;
+    margin-bottom: 12px;   /* 🔥 reduced gap */
+}
+
+.welcome-services .sec-title h2 span {
+    color: #d4ffd4;
+}
+
+/* Row */
+.welcome-services .row {
+    display: flex !important;
+    flex-wrap: nowrap;
+    transition: transform 0.6s ease-in-out;
+    width: 100%;
+}
+
+/* Column */
+.welcome-services .col-md-6 {
+    min-width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* ===============================
+   FEATURE BOX
+================================= */
+
+.feature-box {
+    width: 65%;
+    max-width: 800px;
+
+    min-height: 160px;   /* 🔥 reduced from 220px */
+    margin: 8px auto;    /* less outer spacing */
+    padding: 25px 35px;  /* smaller inner spacing */
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.3);
+
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+/* Green Glow Accent */
+.feature-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    border-radius: 20px 0 0 20px;
+    background: linear-gradient(
+        to bottom,
+        #2ecc71,
+        #27ae60
+    );
+}
+
+/* Hover Effect */
+.feature-box:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+}
+
+/* Feature Content */
+.feature-box h3 {
+    font-size: 2.2em;
+    margin-bottom: 8px;
+}
+
+.feature-box p {
+    font-size: 1.2em;
+    line-height: 1.6;
+}
+
+/* Link Reset */
+.feature-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.feature-link:hover {
+    text-decoration: none;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .feature-box {
+        width: 90%;
+        padding: 25px;
+    }
+}
+
+footer {
+    background-color: #0e0e0e;
+    color: white;
+    text-align: center;
+    padding: 18px 0;   /* balanced height */
+    font-size: 19px;
+    line-height: 1.6;
+}
+/* ===== COMPACT BOTTOM NAVBAR / FOOTER ===== */
+
+.site-footer {
+    background: #0b0b0b;
+    color: #eaeaea;
+    padding: 20px 0 15px;
+    margin: 0;
+    
+}
+
+.site-footer .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.site-footer .footer-title {
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    color: #cfcfcf;
+}
+
+
+.site-footer .footer-author {
+    font-size: 13px;
+    color: #9aff9a;
+    margin-bottom: 10px;
+}
+
+.site-footer .footer-copy {
+    font-size: 12px;
+    color: #bdbdbd;
+    margin-top: 8px;
+}
+
+/* REMOVE GAP ABOVE FOOTER */
+section:last-of-type {
+    margin-bottom: 0 !important;
+}
+.site-footer {
+    margin-top: 0;
+}
+/* FORCE green section to stop before footer */
+.welcome-services {
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;   /* centers white box horizontally */
+}
+.site-footer {
+    position: relative;
+    z-index: 10;
+}
+
+
+
+#google_translate_element {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+}
+/* 🔥 REMOVE ALL SLIDER / PAGINATION DOTS */
+.carousel-indicators,
+.owl-dots,
+.owl-nav,
+.slick-dots,
+.slick-arrow,
+.swiper-pagination,
+.swiper-pagination-bullets,
+.swiper-pagination-vertical {
+    display: none !important;
+}
+
+html, body {
+    overflow-x: hidden;
+}
+
+
+</style>	
+
+<header>
+	<div class="header">
+       <img src="logo .png"   height="90"  width="90" alt="logo"></a>
+	 <br>
+	  <div class="header-right">
+	   <div class="subnav">
+		   <button class="subnavbtn">Weather<i class="#"></i></button>
+		   <div class="subnav-content">
+		  
+		   <li><a href="weather.html">Your Current Location</a></li>
+		  
+		   </div>
+	   </div>
+	   <a href="govt.html">Government Schemes</a>
+	   <div class="subnav">
+		   <button class="subnavbtn">Crop<i class="#"></i></button>
+		   <div class="subnav-content">
+		   <li><a href="crops.html">Info on Crops</a></li>
+		   
+		   <li><a href="f2.html">Fertilizer</a></li>
+		   </div>
+	   </div>
+	   <div class="subnav">
+		<button class="subnavbtn">Tech Knowledge<i class="#"></i></button>
+		<div class="subnav-content">
+		<li><a href="solarplanal.html">Solar Panel</a></li>
+		
+		</div>
+	   </div>
+	   <div class="subnav">
+		<button class="subnavbtn">Selling<i class="#"></i></button>
+		<div class="subnav-content">
+		<li><a href="seedprice.html">Seed Price</a></li>
+		<li><a href="organic.html">Organic Fertilizer</a></li>
+		<li><a href="inorganic.html">Inorganic Fertilizer</a></li>
+		
+		</div>
+	   </div>
+
+	   <a href="soil_test.html">Soil Tester</a>
+	   <a href="feedback.html">Feedback</a>
+	   </div>
+
+
+	
+
+</div>
+
+</header>
+					
+			    
+					<section class="about-info-box sec-padding">
+						<div class="thm-container">
+							<div class="row">
+								<div class="col-lg-8 col-md-8">
+									<div class="sec-title">
+										<h2><span>What is Farmio</span></h2>
+										<ul class="bulleted-list">
+											<li>Farmio (Farmer Assistance and Resource Management Integrated Online Platform) is a website particularly for the Indian Farmers to provide all information in one portal.</li>
+										</ul>
+										<h2><span>What does Farmio mean?</span></h2>
+										<ul class="bulleted-list">
+											<li>Farmio - Farm Information Management and Optimization</li>
+											<li>Farmio also refers to the moon. In olden times farmers used to refer to the moon while farming.</li>
+										</ul>
+										<h2><span>Reasons to Use Farmio</span></h2>
+										<ul class="bulleted-list">
+											<li>A farmer will be able to get all relevant information on specific subjects around his state.</li>
+											<li>One Stop Solution for Farmers with most of the required Info available at one place.</li>
+											<li>Consist of features like weather report, government schemes, seed price etc.</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+					
+					<section class="welcome-services home-one">
+						<div class="thm-container">
+							<div class="sec-title">
+								<h2><span>Features</span></h2>
+</div>
+
+<div class="row">
+
+    <div class="col-md-6">
+        <a href="weather.html" class="feature-link">
+            <div class="welcome-single-services feature-box">
+                <h3>Weather Report</h3>
+                <p>
+                    Get accurate and real-time weather updates based on your current location
+                    or any searched region. This includes temperature, rainfall predictions,
+                    humidity levels, wind speed, and seasonal alerts to help farmers plan
+                    irrigation, sowing, and harvesting efficiently.
+                </p>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-md-6">
+        <a href="crops.html" class="feature-link">
+            <div class="welcome-single-services feature-box">
+                <h3>Seed Price & Crop Information</h3>
+                <p>
+                    Access up-to-date seed prices along with detailed information about
+                    different crop varieties. Learn about soil requirements, suitable climate,
+                    growth duration, yield expectations, and best farming practices to
+                    maximize productivity.
+                </p>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-md-6">
+        <a href="govts.html" class="feature-link">
+            <div class="welcome-single-services feature-box">
+                <h3>Government Schemes</h3>
+                <p>
+                    Stay informed about the latest government schemes, subsidies, and
+                    financial assistance programs designed for farmers. Understand eligibility
+                    criteria, application processes, and benefits to reduce costs and
+                    increase income securely.
+                </p>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-md-6">
+        <a href="#" class="feature-link">
+            <div class="welcome-single-services feature-box">
+                <h3>Technological Knowledge</h3>
+                <p>
+                    Explore modern agricultural technologies that improve efficiency and
+                    sustainability. Learn about solar-powered solutions, smart irrigation,
+                    eco-friendly machinery, and innovative farming techniques that reduce
+                    labor and improve yield.
+                </p>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-md-6">
+        <a href="#" class="feature-link">
+            <div class="welcome-single-services feature-box">
+                <h3>Low Internet Consumption</h3>
+                <p>
+                    Farmio is optimized to work efficiently even with slow or unstable
+                    internet connections. The platform uses lightweight design and minimal
+                    data usage so farmers in remote areas can access essential information
+                    without interruption.
+                </p>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-md-6">
+        <div class="welcome-single-services feature-box">
+            <h3>Easy to Use Interface</h3>
+            <p>
+                Designed with simplicity in mind, Farmio offers a clean and user-friendly
+                interface. Clear visuals, easy navigation, and readable content ensure that
+                farmers of all age groups can use the platform comfortably without technical
+                difficulty.
+            </p>
+        </div>
+    </div>
+
+</div>
+
+
+
+<footer class="site-footer">
+    <div class="footer-container">
+
+        <div class="footer-quote">
+            "If the farmer is rich, then so is the nation."
+        </div>
+
+        <div class="footer-copy">
+            © 2026 Farmio. All rights reserved.
+        </div>
+
+    </div>
+</footer>
+
+</section>
+<div id="google_translate_element"></div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    includedLanguages: 'en,hi,mr,or,te',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+    autoDisplay: false
+  }, 'google_translate_element');
+}
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<!-- ✅ FEATURE SLIDER SCRIPT (CONTINUOUS RIGHT SLIDE) -->
+<script>
+(function () {
+    const slider = document.querySelector(".welcome-services .row");
+    const slides = document.querySelectorAll(".welcome-services .col-md-6");
+
+    if (!slider || slides.length === 0) return;
+
+    let index = 0;
+    const slideCount = slides.length;
+
+    // ✅ Clone first slide and append to end
+    const firstClone = slides[0].cloneNode(true);
+    slider.appendChild(firstClone);
+
+    setInterval(() => {
+        index++;
+        slider.style.transition = "transform 0.6s ease-in-out";
+        slider.style.transform = `translateX(-${index * 100}%)`;
+
+        // ✅ When reaching clone, jump back invisibly
+        if (index === slideCount) {
+            setTimeout(() => {
+                slider.style.transition = "none";
+                slider.style.transform = "translateX(0%)";
+                index = 0;
+            }, 650); // slightly more than transition time
+        }
+    }, 3000);
+})();
+</script>
+
+</body>
+</html> 

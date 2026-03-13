@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Tomato Information</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f2f6f9;   /* Light background */
+        }
+
+        .photo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 15px;
+            animation: fadeIn 1.2s ease-in;
+        }
+
+        /* CONTENT BOX */
+        .content-box {
+            background: rgba(255, 255, 255, 0.7); /* light + transparent */
+            backdrop-filter: blur(6px);
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 950px;
+            width: 100%;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        img {
+            max-width: 100%;
+            width: 420px;
+            height: auto;
+            border-radius: 12px;
+            margin: 0 auto 25px;
+            display: block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        .photo-info {
+            text-align: center;
+            color: #1e1e1e; /* Normal text color */
+        }
+
+        h2 {
+            font-size: 30px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #1b3a57;
+        }
+
+        h3 {
+            font-size: 22px;
+            margin-top: 30px;
+            margin-bottom: 10px;
+            color: #2b5d87;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        ul {
+            text-align: left;
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            border-collapse: collapse;
+            font-size: 17px;
+            background: rgba(255,255,255,0.6);
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+            color: #222;
+        }
+
+        th {
+            background-color: rgba(230, 240, 250, 0.9);
+            font-weight: bold;
+        }
+
+        /* GOOGLE TRANSLATOR SMALL */
+        /* ===== GOOGLE TRANSLATE CUSTOM STYLE ===== */
+#google_translate_element {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    z-index: 1000;
+}
+
+/* Hide Google branding text */
+.goog-logo-link,
+.goog-te-gadget span {
+    display: none !important;
+}
+
+/* Translator container */
+.goog-te-gadget {
+    font-size: 0;
+}
+
+/* Dropdown styling */
+.goog-te-combo {
+    background-color: #dff0c2;   /* light green */
+    border: 1px solid #9ccc65;
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 14px;
+    color: #2e5f1f;
+    cursor: pointer;
+    outline: none;
+}
+
+/* On hover */
+.goog-te-combo:hover {
+    background-color: #cde9a5;
+}
+
+/* Remove iframe spacing issue */
+iframe.goog-te-banner-frame {
+    display: none !important;
+}
+
+body {
+    top: 0px !important;
+}
+ 
+    </style>
+</head>
+
+<body>
+
+<div class="photo-container">
+
+    <div class="content-box">
+
+        <img src="tomato1.jpg" alt="Tomato Image">
+
+        <div class="photo-info">
+            <h2>Tomato</h2>
+
+            <p>
+                Tomatoes are a widely consumed fruit, botanically classified as a berry and belonging to the Solanaceae family.
+                Native to western South America, tomatoes are now cultivated all over the world. They come in various shapes,
+                sizes, and colors and are rich in vitamins C, K, and antioxidants like lycopene.
+            </p>
+
+            <h3>Why Tomatoes Are Grown in This Season</h3>
+            <p>
+                Tomatoes grow best in warm seasons because they need temperatures between 20°C and 30°C.
+                Warm weather promotes better flowering, fruit development, and sweetness.
+                Cold temperatures and frost can damage the plants, which is why tomatoes are grown in summer
+                or moderate climates.
+            </p>
+
+            <h3>Benefits of Growing Tomatoes</h3>
+            <p>
+                Tomatoes provide high nutritional value, strong market demand, and good profit for farmers.
+                They grow quickly, give high yield, and are easy to cultivate both commercially and at home.
+            </p>
+
+            <h3>Tomato Farming Tips</h3>
+            <ul>
+                <li>Choose high-quality seeds or healthy seedlings.</li>
+                <li>Plant in well-drained, fertile soil.</li>
+                <li>Provide 6–8 hours of sunlight daily.</li>
+                <li>Water regularly but avoid waterlogging.</li>
+                <li>Use organic manure or compost for better yield.</li>
+                <li>Protect plants from pests and diseases.</li>
+            </ul>
+
+            <h3>Tomato Growing Information Table</h3>
+            <table>
+                <tr>
+                    <th>Factor</th>
+                    <th>Requirement</th>
+                </tr>
+                <tr>
+                    <td>Best Season</td>
+                    <td>Summer / Warm Climate</td>
+                </tr>
+                <tr>
+                    <td>Soil Type</td>
+                    <td>Well-drained loamy soil</td>
+                </tr>
+                <tr>
+                    <td>Temperature</td>
+                    <td>20°C – 30°C</td>
+                </tr>
+                <tr>
+                    <td>Water Requirement</td>
+                    <td>Moderate, regular watering</td>
+                </tr>
+                <tr>
+                    <td>Sunlight</td>
+                    <td>6–8 hours daily</td>
+                </tr>
+                <tr>
+                    <td>Yield Time</td>
+                    <td>60–90 days</td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<!-- Google Translator -->
+<div id="google_translate_element"></div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,hi,mr,or,te',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+
+<script type="text/javascript"
+src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+
+</body>
+</html>

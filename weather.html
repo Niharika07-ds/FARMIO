@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEATHER</title>
+    <link rel="stylesheet" href="weather.css">
+</head>
+<body>
+    <body>
+  <div class="header">
+    <h1>WEATHER</h1>
+    <div class="controls">
+      <input type="text" id="input" placeholder="Enter city name">
+      <button id="search" onclick="searchByCity()">Search</button>
+      <button id="locationBtn" onclick="useMyLocation()">📍</button>
+      <button id="unitBtn" onclick="toggleUnit()">°F</button>
+    </div>
+  </div>
+
+  <!-- Loader -->
+  <div id="loader" class="loader hidden"></div>
+
+  <main>
+    <div class="weather">
+      <h2 id="city">--</h2>
+
+      <!-- Weather Animation -->
+      <div id="animation" class="animation"></div>
+
+      <div class="temp-box">
+        <img id="img" />
+        <p id="temperature">-- °C</p>
+      </div>
+
+      <span id="clouds">---</span>
+
+      <!-- Weather Cards -->
+      <div class="cards">
+        <div class="card">💧 Humidity<br><span id="humidity">--</span>%</div>
+        <div class="card">💨 Wind<br><span id="wind">--</span> m/s</div>
+        <div class="card">🔽 Pressure<br><span id="pressure">--</span> hPa</div>
+      </div>
+    </div>
+
+    <div class="divider1"></div>
+
+    <div class="forecstH">
+      <p class="cast-header">Upcoming forecast</p>
+      <div class="templist"></div>
+    </div>
+  </main>
+
+  <div class="forecstD">
+    <div class="divider2"></div>
+    <p class="cast-header">Next 4 days forecast</p>
+    <div class="weekF"></div>
+  </div>
+
+  <script src="weather.js"></script>
+
+
+    <div id="google_translate_element"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,hi,mr,or,te',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>  

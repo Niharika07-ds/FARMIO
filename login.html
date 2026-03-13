@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login & Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Your CSS -->
+    <link rel="stylesheet" href="./login.css">
+</head>
+
+<body>
+
+<!-- ================= SIGN UP ================= -->
+<div class="container" id="signup" style="display:none;">
+    <h1 class="form-title">Register</h1>
+
+    <div class="input-group">
+        <i class="fas fa-user"></i>
+        <input type="text" id="fName" placeholder="First Name">
+    </div>
+
+    <div class="input-group">
+        <i class="fas fa-user"></i>
+        <input type="text" id="lName" placeholder="Last Name">
+    </div>
+
+    <div class="input-group">
+        <i class="fas fa-envelope"></i>
+        <input type="email" id="rEmail" placeholder="Email">
+    </div>
+
+    <div class="input-group">
+        <i class="fas fa-lock"></i>
+        <input type="password" id="rPassword" placeholder="Password">
+    </div>
+
+    <!-- IMPORTANT FIX HERE -->
+    <button type="button" class="btn" id="submitSignUp">Sign Up</button>
+
+    <p class="or">---------- or ----------</p>
+
+    <div class="links">
+        <p>Already have an account?</p>
+        <button id="signInButton">Sign In</button>
+    </div>
+</div>
+
+<!-- ================= SIGN IN ================= -->
+<div class="container" id="signIn">
+    <h1 class="form-title">Sign In</h1>
+
+    <div class="input-group">
+        <i class="fas fa-envelope"></i>
+        <input type="email" id="email" placeholder="Email">
+    </div>
+
+    <div class="input-group">
+        <i class="fas fa-lock"></i>
+        <input type="password" id="password" placeholder="Password">
+    </div>
+
+    <!-- IMPORTANT FIX HERE -->
+    <button type="button" class="btn" id="submitSignIn">Sign In</button>
+
+    <p class="or">---------- or ----------</p>
+
+    <div class="links">
+        <p>Don’t have an account?</p>
+        <button id="signUpButton">Sign Up</button>
+    </div>
+</div>
+
+<!-- ================= TOGGLE SCRIPT ================= -->
+<script>
+const signUpButton = document.getElementById('signUpButton');
+const signInButton = document.getElementById('signInButton');
+const signInForm = document.getElementById('signIn');
+const signUpForm = document.getElementById('signup');
+
+signUpButton.onclick = () => {
+    signInForm.style.display = "none";
+    signUpForm.style.display = "block";
+};
+
+signInButton.onclick = () => {
+    signUpForm.style.display = "none";
+    signInForm.style.display = "block";
+};
+</script>
+
+<!-- ================= FIREBASE AUTH SCRIPT ================= -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
+import {
+  getFirestore,
+  setDoc,
+  doc
+} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDs06guUm1JtMwlESrgaW9GiU7BG80wfNo",
+  authDomain: "telemed-30991.firebaseapp.com",
+  projectId: "telemed-30991",
+  storageBucket: "telemed-30991.appspot.com",
+  messagingSenderId: "1537577672",
+  appId: "1:1537577672:web:f426ec741a21a4b53a4bfd"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+/* -------- SIGN UP -------- */
+document.getElementById("submitSignUp").addEventListener("click", async () => {
+  try {
+    const fName = document.getElementById("fName").value;
+    const lName = document.getElementById("lName").value;
+    const email = document.getElementById("rEmail").value;
+    const password = document.getElementById("rPassword").value;
+
+    const userCred = await createUserWithEmailAndPassword(auth, email, password);
+
+    await setDoc(doc(db, "users", userCred.user.uid), {
+      firstName: fName,
+      lastName: lName,
+      email: email
+    });
+
+    localStorage.setItem("loggedInUserId", userCred.user.uid);
+    window.location.href = "dashboard.html";
+
+  } catch (err) {
+    alert(err.message);
+  }
+});
+
+/* -------- SIGN IN -------- */
+document.getElementById("submitSignIn").addEventListener("click", async () => {
+  try {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    const userCred = await signInWithEmailAndPassword(auth, email, password);
+    localStorage.setItem("loggedInUserId", userCred.user.uid);
+    window.location.href = "dashboard.html";
+
+  } catch (err) {
+    alert(err.message);
+  }
+});
+</script>
+
+</body>
+</html>

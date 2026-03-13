@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Seed Price Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; font-family: Poppins, sans-serif; }
+    body {
+      background: linear-gradient(135deg,#1b4332,#081c15);
+      margin: 0; padding: 0px; color: #e9f5f2;
+    }
+    h1 { text-align: center; color: #ffd166; margin-bottom: 20px; }
+    .controls { text-align: center; margin: 20px; }
+    .controls input, select {
+      padding: 10px; border-radius: 20px; border: none; width: 220px; margin: 5px;
+    }
+    button {
+      background: #40916c; color: white;
+      padding: 10px 18px; border: none; border-radius: 20px;
+      cursor: pointer; margin: 5px;
+    }
+    button:hover { background: #2d6a4f; }
+    .tableizer-table {
+      width: 90%; margin: auto; background: white;
+      border-collapse: collapse; border-radius: 12px;
+      overflow: hidden; color: #1b4332;
+    }
+    th { background: #2d6a4f; color: white; padding: 15px; }
+    td { padding: 14px; text-align: center; cursor: pointer; }
+    tr:nth-child(even) { background: #f1faee; }
+    tr:hover { background: #d8f3dc; }
+    #info-box,#calculator,#admin-panel {
+      display: none; margin: 30px auto;
+      background: white; color: #1b4332;
+      width: 80%; padding: 25px; border-radius: 16px;
+    }
+    .recommend {
+      background: #ffd166; color: black;
+      padding: 15px; border-radius: 12px;
+      width: 90%; margin: 20px auto; text-align: center;
+    }
+      /* ================= FOOTER ================= */
+
+.footer {
+    background: #000000;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px 10px;
+    margin-top: 40px;
+}
+
+.footer p {
+    margin: 5px 0;
+}
+
+.footer .quote {
+    font-size: 18px;
+    font-style: italic;
+    color: #d4ffd4;
+}
+
+.footer .copyright {
+    font-size: 14px;
+    opacity: 0.8;
+}
+  
+    #google_translate_element {
+      position: fixed; top: 10px; right: 10px;
+      background: white; padding: 6px; border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🌾 LATEST SEED PRICES 🌾</h1>
+
+<div class="controls">
+  <input id="searchInput" placeholder="🔍 Search crop/variety" onkeyup="searchCrop()">
+  <button onclick="sortTable(true)">⬆ Price</button>
+  <button onclick="sortTable(false)">⬇ Price</button>
+  <button onclick="downloadPDF()">📄 PDF</button>
+  <button onclick="adminLogin()">🔐 Admin</button>
+</div>
+
+<div class="recommend">
+  🌦️ Select Season:
+  <select onchange="seasonSuggest(this.value)">
+    <option value="">--Select--</option>
+    <option value="kharif">Kharif</option>
+    <option value="rabi">Rabi</option>
+    <option value="zaid">Zaid</option>
+  </select>
+  <p id="seasonResult"></p>
+</div>
+
+<table class="tableizer-table">
+  <thead>
+    <tr><th>CROP</th><th>VARIETY / PRICE (₹/Quintal)</th></tr>
+  </thead>
+  <tbody id="cropTable">
+    <!-- Cereals -->
+    <tr onclick="selectCrop('Rice','Generic Rice',1940)"><td>🍚 Rice</td><td>1940</td></tr>
+    <tr onclick="selectCrop('Wheat','Generic Wheat',1940)"><td>🌾 Wheat</td><td>1940</td></tr>
+    <tr onclick="selectCrop('Maize','Generic Maize',5726)"><td>🌽 Maize</td><td>5726</td></tr>
+    <tr onclick="selectCrop('Jowar','Generic Jowar',1870)"><td>🌿 Jowar</td><td>1870</td></tr>
+    <tr onclick="selectCrop('Bajra','Generic Bajra',2015)"><td>🌱 Bajra</td><td>2015</td></tr>
+    <tr onclick="selectCrop('Ragi','Generic Ragi',3950)"><td>🌾 Ragi</td><td>3950</td></tr>
+    <!-- Pulses -->
+    <tr onclick="selectCrop('Tur','Generic Tur',1940)"><td>🫘 Tur (Arhar)</td><td>1940</td></tr>
+    <tr onclick="selectCrop('Moong','Generic Moong',1870)"><td>🫘 Moong</td><td>1870</td></tr>
+    <tr onclick="selectCrop('Urad','Generic Urad',2015)"><td>🫘 Urad</td><td>2015</td></tr>
+    <tr onclick="selectCrop('Gram','Generic Gram',2015)"><td>🫘 Gram (Chana)</td><td>2015</td></tr>
+    <tr onclick="selectCrop('Masur','Generic Masur',5726)"><td>🫘 Masur (Lentil)</td><td>5726</td></tr>
+    <tr onclick="selectCrop('Peas','Generic Peas',3000)"><td>🫘 Peas</td><td>3000</td></tr>
+    <!-- Oilseeds -->
+    <tr onclick="selectCrop('Soyabean','Generic Soyabean',1870)"><td>🫘 Soyabean</td><td>1870</td></tr>
+    <tr onclick="selectCrop('Groundnut','Generic Groundnut',3950)"><td>🥜 Groundnut</td><td>3950</td></tr>
+    <tr onclick="selectCrop('Sunflower','Generic Sunflower',1940)"><td>🌻 Sunflower</td><td>1940</td></tr>
+    <tr onclick="selectCrop('Mustard','Generic Mustard',3950)"><td>🌿 Mustard</td><td>3950</td></tr>
+    <tr onclick="selectCrop('Sesamum','Generic Sesamum',5726)"><td>🌱 Sesamum (Til)</td><td>5726</td></tr>
+    <tr onclick="selectCrop('Nigerseed','Generic Nigerseed',3950)"><td>🌼 Niger Seed</td><td>3950</td></tr>
+    <!-- Vegetables -->
+    <tr onclick="selectCrop('Potato','Generic Potato',1200)"><td>🥔 Potato</td><td>1200</td></tr>
+    <tr onclick="selectCrop('Tomato','Generic Tomato',1500)"><td>🍅 Tomato</td><td>1500</td></tr>
+    <tr onclick="selectCrop('Onion','Generic Onion',1800)"><td>🧅 Onion</td><td>1800</td></tr>
+    <tr onclick="selectCrop('Brinjal','Generic Brinjal',1600)"><td>🍆 Brinjal</td><td>1600</td></tr>
+    <tr onclick="selectCrop('Cabbage','Generic Cabbage',1400)"><td>🥬 Cabbage</td><td>1400</td></tr>
+    <tr onclick="selectCrop('Cauliflower','Generic Cauliflower',1700)"><td>🥦 Cauliflower</td><td>1700</td></tr>
+    <tr onclick="selectCrop('Chilli','Generic Chilli',2500)"><td>🌶️ Chilli</td><td>2500</td></tr>
+    <tr onclick="selectCrop('Okra','Generic Okra',2200)"><td>🥒 Okra (Bhindi)</td><td>2200</td></tr>
+    <!-- Cash / Commercial -->
+    <tr onclick="selectCrop('Cotton','Generic Cotton',5726)"><td>☁️ Cotton</td><td>5726</td></tr>
+    <tr onclick="selectCrop('Sugarcane','Generic Sugarcane',350)"><td>🍬 Sugarcane</td><td>350</td></tr>
+    <tr onclick="selectCrop('Jute','Generic Jute',4500)"><td>🧵 Jute</td><td>4500</td></tr>
+    <tr onclick="selectCrop('Tea','Generic Tea',6500)"><td>🍃 Tea</td><td>6500</td></tr>
+    <tr onclick="selectCrop('Coffee','Generic Coffee',7200)"><td>☕ Coffee</td><td>7200</td></tr>
+  </tbody>
+</table>
+
+<!-- INFO BOX -->
+<div id="info-box"></div>
+
+<!-- CALCULATOR -->
+<div id="calculator">
+  <h2>🧮 Seed Price Calculator</h2>
+  <select id="cropSelect" onchange="updateVarieties()">
+    <option value="">--Select Crop--</option>
+  </select>
+  <select id="varietySelect"></select>
+  <input id="quantity" placeholder="Enter quantity (Quintals)">
+  <button onclick="calculatePrice()">Calculate</button>
+  <p id="calcResult"></p>
+</div>
+
+<!-- ADMIN -->
+<div id="admin-panel">
+  <h2>Admin Panel</h2>
+  <input id="cropName" placeholder="Crop name">
+  <input id="newPrice" placeholder="New price">
+  <button onclick="updatePrice()">Update</button>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    <p class="quote">"If the farmer is rich, then so is the nation."</p>
+    <p class="copyright">© 2026 Farmio. All rights reserved.</p>
+</div>
+
+<div id="google_translate_element"></div>
+
+<script>
+  // Seed data with varieties and prices
+  const seedData = {
+    Rice: [ {variety:"Pusa Basmati", price:2500}, {variety:"PR 106", price:1800}, {variety:"IR 64", price:2000} ],
+    Wheat: [ {variety:"PBW 343", price:2000}, {variety:"HD 2967", price:2100} ],
+    Maize: [ {variety:"DHM 117", price:3000}, {variety:"HQPM 1", price:2800} ],
+    Onion: [ {variety:"N-53", price:1800}, {variety:"Pusa Red", price:2000} ],
+    Tomato: [ {variety:"Pusa Ruby", price:1500}, {variety:"Arka Samrat", price:1600} ]
+  };
+
+  // Populate crop dropdown
+  const cropSelect = document.getElementById("cropSelect");
+  for (let crop in seedData) cropSelect.innerHTML += `<option value="${crop}">${crop}</option>`;
+
+  // Update variety dropdown based on crop
+  function updateVarieties() {
+    const crop = cropSelect.value;
+    const varietySelect = document.getElementById("varietySelect");
+    varietySelect.innerHTML = "";
+    if (!crop) return;
+    seedData[crop].forEach(v => {
+      varietySelect.innerHTML += `<option value="${v.price}">${v.variety} - ₹${v.price}</option>`;
+    });
+  }
+
+  // On table row click
+  function selectCrop(crop, variety, price) {
+    cropSelect.value = crop;
+    updateVarieties();
+    document.getElementById("varietySelect").value = price;
+    document.getElementById("info-box").style.display = "block";
+    document.getElementById("calculator").style.display = "block";
+    document.getElementById("info-box").innerHTML = 
+      `<h2>${crop} - ${variety}</h2>
+       <p>Suitable climate, good yield & profitable crop.</p>
+       <a target="_blank" href="https://www.amazon.in/s?k=${crop}+${variety}+seeds">
+       <button>Buy Seeds</button></a>`;
+  }
+
+  // Calculate total price
+  function calculatePrice() {
+    const price = parseFloat(document.getElementById("varietySelect").value);
+    const quantity = parseFloat(document.getElementById("quantity").value);
+    if (!quantity) return;
+    document.getElementById("calcResult").innerText = `Total Cost = ₹ ${price * quantity}`;
+  }
+
+  // Search crops/varieties
+  function searchCrop() {
+    let input = document.getElementById("searchInput").value.toLowerCase();
+    document.querySelectorAll("#cropTable tr").forEach(r => {
+      r.style.display = r.innerText.toLowerCase().includes(input) ? "" : "none";
+    });
+  }
+
+  // Sort table by price
+  function sortTable(asc) {
+    let tbody = document.getElementById("cropTable");
+    let rows = [...tbody.rows];
+    rows.sort((a,b) => asc ? a.cells[1].innerText-b.cells[1].innerText : b.cells[1].innerText-a.cells[1].innerText);
+    rows.forEach(r => tbody.appendChild(r));
+  }
+
+  // Season suggestion
+  function seasonSuggest(season) {
+    let crops = { kharif:"Rice, Maize, Cotton, Bajra", rabi:"Wheat, Mustard, Gram", zaid:"Watermelon, Cucumber, Maize" };
+    document.getElementById("seasonResult").innerText = crops[season] || "";
+  }
+
+  // PDF download
+  function downloadPDF() {
+    let win = window.open("");
+    win.document.write("<h2>Seed Price List</h2>" + document.querySelector(".tableizer-table").outerHTML);
+    win.print();
+  }
+
+  // Admin login & update
+  function adminLogin() {
+    let pass = prompt("Enter admin password");
+    if(pass==="admin123") document.getElementById("admin-panel").style.display="block";
+    else alert("Wrong password");
+  }
+  function updatePrice() {
+    let crop = document.getElementById("cropName").value.toLowerCase();
+    let price = document.getElementById("newPrice").value;
+    document.querySelectorAll("#cropTable tr").forEach(r => {
+      if(r.cells[0].innerText.toLowerCase().includes(crop))
+        r.cells[1].innerText = price;
+    });
+    alert("Price updated");
+  }
+
+  // Google Translate
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage:'en',
+      includedLanguages:'en,hi,mr,or,te'
+    }, 'google_translate_element');
+  }
+</script>
+
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html> 

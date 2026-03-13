@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Rice Information</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f2f6f9;
+        }
+
+        .photo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 15px;
+        }
+
+        .content-box {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(6px);
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 950px;
+            width: 100%;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        img {
+            max-width: 100%;
+            width: 420px;
+            height: auto;
+            border-radius: 12px;
+            margin: 0 auto 25px;
+            display: block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        .photo-info {
+            text-align: center;
+            color: #1e1e1e;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #1b3a57;
+        }
+
+        h3 {
+            font-size: 22px;
+            margin-top: 30px;
+            margin-bottom: 10px;
+            color: #2b5d87;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        ul {
+            text-align: left;
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            border-collapse: collapse;
+            font-size: 17px;
+            background: rgba(255,255,255,0.6);
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+            color: #222;
+        }
+
+        th {
+            background-color: rgba(230, 240, 250, 0.9);
+            font-weight: bold;
+        }
+
+        /* Google Translate */
+        #google_translate_element {
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            z-index: 1000;
+        }
+
+        .goog-logo-link,
+        .goog-te-gadget span {
+            display: none !important;
+        }
+
+        .goog-te-gadget {
+            font-size: 0;
+        }
+
+        .goog-te-combo {
+            background-color: #dff0c2;
+            border: 1px solid #9ccc65;
+            border-radius: 8px;
+            padding: 6px 10px;
+            font-size: 14px;
+            color: #2e5f1f;
+            cursor: pointer;
+        }
+
+        iframe.goog-te-banner-frame {
+            display: none !important;
+        }
+
+        body {
+            top: 0px !important;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="photo-container">
+    <div class="content-box">
+
+        <img src="rice.webp" alt="Rice Image">
+
+        <div class="photo-info">
+            <h2>Rice</h2>
+
+            <p>
+                Rice is one of the most important staple food crops in the world,
+                especially in Asian countries. It belongs to the grass family and
+                is mainly grown in water-rich fields called paddy fields.
+                Rice provides a major source of energy for millions of people.
+            </p>
+
+            <h3>Why Rice Is Grown in This Season</h3>
+            <p>
+                Rice grows best in warm and humid climates with plenty of water.
+                It requires temperatures between 20°C and 35°C and high rainfall.
+                Monsoon season provides ideal conditions for rice cultivation.
+            </p>
+
+            <h3>Benefits of Growing Rice</h3>
+            <p>
+                Rice has high demand and ensures food security.
+                It provides employment to a large population and supports rural
+                economies. Rice straw is also used as animal feed and fuel.
+            </p>
+
+            <h3>Rice Farming Tips</h3>
+            <ul>
+                <li>Use high-yielding and disease-resistant varieties.</li>
+                <li>Prepare well-leveled fields for water retention.</li>
+                <li>Maintain standing water during early growth stages.</li>
+                <li>Apply fertilizers at recommended stages.</li>
+                <li>Control weeds and pests regularly.</li>
+                <li>Harvest when grains are fully mature.</li>
+            </ul>
+
+            <h3>Rice Growing Information Table</h3>
+            <table>
+                <tr>
+                    <th>Factor</th>
+                    <th>Requirement</th>
+                </tr>
+                <tr>
+                    <td>Best Season</td>
+                    <td>Kharif / Monsoon</td>
+                </tr>
+                <tr>
+                    <td>Soil Type</td>
+                    <td>Clayey or loamy soil</td>
+                </tr>
+                <tr>
+                    <td>Temperature</td>
+                    <td>20°C – 35°C</td>
+                </tr>
+                <tr>
+                    <td>Water Requirement</td>
+                    <td>High</td>
+                </tr>
+                <tr>
+                    <td>Sunlight</td>
+                    <td>Full sunlight</td>
+                </tr>
+                <tr>
+                    <td>Harvest Time</td>
+                    <td>100–150 days</td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<div id="google_translate_element"></div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,hi,mr,or,te',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+
+<script type="text/javascript"
+src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+
+</body>
+</html>

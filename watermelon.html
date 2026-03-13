@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Watermelon Information</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f2f6f9;
+        }
+
+        .photo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 15px;
+            animation: fadeIn 1.2s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content-box {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(6px);
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 950px;
+            width: 100%;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        img {
+            max-width: 100%;
+            width: 420px;
+            height: auto;
+            border-radius: 12px;
+            margin: 0 auto 25px;
+            display: block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        .photo-info {
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #1b3a57;
+        }
+
+        h3 {
+            font-size: 22px;
+            margin-top: 30px;
+            margin-bottom: 10px;
+            color: #2b5d87;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        ul {
+            text-align: left;
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            border-collapse: collapse;
+            font-size: 17px;
+            background: rgba(255,255,255,0.6);
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: rgba(230, 240, 250, 0.9);
+            font-weight: bold;
+        }
+
+        /* GOOGLE TRANSLATE */
+        #google_translate_element {
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            z-index: 1000;
+        }
+
+        .goog-logo-link,
+        .goog-te-gadget span {
+            display: none !important;
+        }
+
+        .goog-te-gadget {
+            font-size: 0;
+        }
+
+        .goog-te-combo {
+            background-color: #dff0c2;
+            border: 1px solid #9ccc65;
+            border-radius: 8px;
+            padding: 6px 10px;
+            font-size: 14px;
+            color: #2e5f1f;
+            cursor: pointer;
+        }
+
+        iframe.goog-te-banner-frame {
+            display: none !important;
+        }
+
+        body {
+            top: 0px !important;
+        }
+
+        @media (max-width: 600px) {
+            h2 { font-size: 24px; }
+            h3 { font-size: 20px; }
+            p, ul, table { font-size: 16px; }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="photo-container">
+    <div class="content-box">
+
+        <img src="water2.png" alt="Watermelon Image">
+
+        <div class="photo-info">
+            <h2>Watermelon</h2>
+
+            <p>
+                Watermelon is a refreshing fruit belonging to the Cucurbitaceae family.
+                It contains about 92% water, making it an excellent fruit for hydration.
+                Watermelon is rich in vitamins A and C and antioxidants like lycopene.
+            </p>
+
+            <h3>Why Watermelon Is Grown in This Season</h3>
+            <p>
+                Watermelon grows best in warm and sunny climates.
+                High temperatures support proper vine growth, sweetness,
+                and healthy fruit development.
+            </p>
+
+            <h3>Benefits of Growing Watermelon</h3>
+            <p>
+                Watermelon has high market demand, fast growth, and good profit.
+                It is easy to cultivate and suitable for both small and large farms.
+            </p>
+
+            <h3>Watermelon Farming Tips</h3>
+            <ul>
+                <li>Use certified seeds for better yield.</li>
+                <li>Plant in sandy loam, well-drained soil.</li>
+                <li>Provide full sunlight exposure.</li>
+                <li>Water regularly without overwatering.</li>
+                <li>Protect crops from pests and diseases.</li>
+            </ul>
+
+            <h3>Watermelon Growing Information Table</h3>
+            <table>
+                <tr>
+                    <th>Factor</th>
+                    <th>Requirement</th>
+                </tr>
+                <tr>
+                    <td>Best Season</td>
+                    <td>Summer</td>
+                </tr>
+                <tr>
+                    <td>Soil Type</td>
+                    <td>Sandy loam soil</td>
+                </tr>
+                <tr>
+                    <td>Temperature</td>
+                    <td>22°C – 35°C</td>
+                </tr>
+                <tr>
+                    <td>Water Requirement</td>
+                    <td>Moderate</td>
+                </tr>
+                <tr>
+                    <td>Sunlight</td>
+                    <td>Full sunlight</td>
+                </tr>
+                <tr>
+                    <td>Harvest Time</td>
+                    <td>70–100 days</td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<div id="google_translate_element"></div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,hi,mr,or,te',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+
+<script type="text/javascript"
+src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+
+</body>
+</html>

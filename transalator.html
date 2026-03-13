@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Translator Example</title>
+<style>
+  #google_translate_element {
+    /* Optional: Style the translator element */
+    position: sticky; /* Or relative, absolute, etc. */
+    top: 10px; /* Adjust as needed */
+    right: 10px; /* Adjust as needed */
+    z-index: 1000; /* Ensure it's on top */
+  }
+  #google_translate_element {
+    /* other styles */
+    overflow: auto; /* or overflow: scroll; */
+    max-height: 200px; /* Optional: Set a maximum height */
+  }
+</style>
+</head>
+<body>
+
+<h1>My Website Content</h1>
+<p>This is some sample text that can be translated.</p>
+<p>This is another paragraph.</p>
+
+<div id="google_translate_element"></div>
+
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
+}
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>

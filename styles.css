@@ -1,0 +1,98 @@
+/* Basic reset */
+body, h1, h2, h3, p, a {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Header styles */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #0f0e0e;
+}
+
+.header .logo {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+    
+}
+
+
+    .header .logo img{
+        background-image: url ('luna.jpg');
+ width: 20%; /* Adjust as needed */
+ height: auto; /* Maintain aspect ratio */
+}
+.caption{
+    background-image: url('p9.jpg');
+    background-image: no-repeat;
+    background-size: cover;
+}
+nav {
+    display: flex;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+nav a:hover {
+    background-color: #575757;
+}
+
+/* Dropdown styles */
+.dropdown {
+    position: relative;
+}
+
+.dropbtn {
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    min-width: 160px;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+.dropdown-content a:hover {
+    background-color: #575757;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #575757;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #0e0e0e;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    background-image: url('path/to/your-footer-background.jpg');
+    background-size: cover;
+    background-position: center;
+}

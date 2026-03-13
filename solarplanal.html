@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solar & Fertilizer Sustainability</title>
+
+<style>
+:root {
+  --green: #16a34a;
+  --blue: #0284c7;
+  --bg: #f0f9ff;
+  --card: #ffffff;
+  --text: #0f172a;
+}
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* BODY */
+body {
+  background: linear-gradient(135deg, #f0f9ff, #ecfeff);
+  color: var(--text);
+  line-height: 1.8;
+}
+
+/* STICKY NAV */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  padding: 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+nav a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: var(--green);
+}
+
+/* SECTIONS */
+section {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+/* CARD */
+.card {
+  background: var(--card);
+  padding: 30px;
+  border-radius: 16px;
+  margin-bottom: 30px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+  animation: fadeUp 0.7s ease;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+  color: var(--green);
+  margin-bottom: 14px;
+}
+
+h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+/* IMAGES */
+.responsive-img {
+  width: 100%;
+  border-radius: 14px;
+  margin: 20px 0;
+}
+
+/* TABLE */
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  min-width: 650px;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 14px;
+  border: 1px solid #cbd5e1;
+  text-align: center;
+}
+
+th {
+  background: #dcfce7;
+  color: #065f46;
+}
+
+/* CALCULATOR */
+.calc input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+}
+
+.calc button {
+  background: var(--green);
+  color: white;
+  border: none;
+  padding: 14px;
+  width: 100%;
+  border-radius: 10px;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.calc button:hover {
+  background: #15803d;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  nav {
+    flex-wrap: wrap;
+  }
+}
+
+/* FOOTER */
+.footer {
+    background: #000000;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px 10px;
+    margin-top: 40px;
+}
+
+.footer p {
+    margin: 5px 0;
+}
+
+.footer .quote {
+    font-size: 18px;
+    font-style: italic;
+    color: #d4ffd4;
+}
+
+.footer .copyright {
+    font-size: 14px;
+    opacity: 0.8;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a href="#intro">Home</a>
+  <a href="#solar">Solar</a>
+  <a href="#fertilizer">Fertilizers</a>
+  <a href="#compare">Comparison</a>
+  <a href="#calculator">Calculator</a>
+</nav>
+
+<section id="intro">
+  <div class="card">
+    <h2>🌍 Sustainable Farming with Solar & Fertilizers</h2>
+    <p>
+      Solar energy and fertilizers together improve crop yield, reduce electricity costs,
+      and promote eco-friendly agriculture practices.
+    </p>
+  </div>
+</section>
+
+<section id="solar">
+  <div class="card">
+    <h2>☀️ Solar Energy in Agriculture</h2>
+    <img class="responsive-img"
+      src="https://images.unsplash.com/photo-1509391366360-2e959784a276"
+      alt="Solar Panels">
+
+    <p>
+      Solar panels power irrigation pumps, cold storage, fertilizer units,
+      and farming equipment using clean renewable energy.
+    </p>
+
+    <h3>🔋 Solar Panel Details</h3>
+    <ul>
+      <li>Panel Wattage: 330W per panel</li>
+      <li>Number of Panels: 10</li>
+      <li>Efficiency: 18%</li>
+      <li>Estimated Current: 5.5A per panel</li>
+      <li>Typical Installation Cost: ₹50,000</li>
+    </ul>
+  </div>
+</section>
+
+<section id="fertilizer">
+  <div class="card">
+    <h2>🌱 Fertilizers & Soil Health</h2>
+    <img class="responsive-img"
+      src="solar-farm.webp"
+      alt="Fertilizer Usage">
+
+    <p>
+      Fertilizers provide essential nutrients required for plant growth and
+      increase crop productivity when used responsibly.
+    </p>
+  </div>
+</section>
+
+<section id="compare">
+  <div class="card">
+    <h2>📊 Solar vs Conventional Electricity</h2>
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>Feature</th>
+          <th>Solar</th>
+          <th>Grid</th>
+        </tr>
+        <tr>
+          <td>Cost</td>
+          <td>Low</td>
+          <td>High</td>
+        </tr>
+        <tr>
+          <td>Eco-friendly</td>
+          <td>Yes</td>
+          <td>No</td>
+        </tr>
+        <tr>
+          <td>Power Cuts</td>
+          <td>No</td>
+          <td>Yes</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="calculator">
+  <div class="card calc">
+    <h2>🧪 Solar Savings & Current Calculator</h2>
+
+    <input type="number" id="units" placeholder="Monthly units (kWh)">
+    <input type="number" id="rate" placeholder="Cost per unit (₹)">
+    <input type="number" id="watt" placeholder="Solar panel wattage (W)" value="330">
+    <input type="number" id="panels" placeholder="Number of panels" value="10">
+    <input type="number" id="install" placeholder="Solar installation cost (₹)" value="50000">
+    <input type="number" id="specificUnits" placeholder="Enter units to calculate price for (kWh)">
+
+    <button onclick="calculateSolar()">Calculate</button>
+    <p id="result" style="margin-top:15px;font-weight:bold;"></p>
+    <p id="specificResult" style="margin-top:10px;font-weight:bold;color:#065f46;"></p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+    <p class="quote">"If the farmer is rich, then so is the nation."</p>
+    <p class="copyright">© 2026 Farmio. All rights reserved.</p>
+</div>
+
+<script>
+function calculateSolar() {
+  let u = parseFloat(document.getElementById('units').value);
+  let r = parseFloat(document.getElementById('rate').value);
+  let watt = parseFloat(document.getElementById('watt').value);
+  let panels = parseFloat(document.getElementById('panels').value);
+  let installCost = parseFloat(document.getElementById('install').value);
+  let sUnits = parseFloat(document.getElementById('specificUnits').value);
+
+  if (!u || !r || !watt || !panels || !installCost) {
+    document.getElementById('result').innerText = "Enter all values";
+    return;
+  }
+
+  let monthlyBill = u * r;
+  let yearlySavings = monthlyBill * 12;
+
+  let voltage = 230;
+  let totalPower = watt * panels;
+  let current = (totalPower / voltage).toFixed(2);
+
+  document.getElementById('result').innerHTML =
+    `Monthly Bill: ₹${monthlyBill.toFixed(2)}<br>
+     Yearly Savings: ₹${yearlySavings.toFixed(2)}<br>
+     Estimated Solar Current: ${current} A<br>
+     Solar Installation Cost: ₹${installCost.toFixed(2)}`;
+
+  if (sUnits) {
+    let priceForUnits = sUnits * r;
+    document.getElementById('specificResult').innerText =
+      `💰 Cost for ${sUnits} unit(s): ₹${priceForUnits.toFixed(2)}`;
+  } else {
+    document.getElementById('specificResult').innerText = '';
+  }
+}
+</script>
+
+</body>
+</html>

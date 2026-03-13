@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CROPS</title>
+
+<style>
+:root {
+  --bg-light: linear-gradient(135deg, #eaf7e1, #cde8b5, #f5fbe9);
+  --bg-dark: #0f1a12;
+  --card-light: rgba(255,255,255,0.75);
+  --card-dark: #1b2a20;
+  --text-light: #1f3d1f;
+  --text-dark: #e5f6e5;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg-light);
+  color: var(--text-light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s;
+}
+
+body.dark {
+  background: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+.gif-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 20px;
+  width: 95%;
+  max-width: 1200px;
+}
+
+.gif-container {
+  border-radius: 18px;
+  padding: 14px;
+  background: var(--card-light);
+  backdrop-filter: blur(6px);
+  border: 2px solid var(--accent);
+  transition: 0.3s;
+}
+
+body.dark .gif-container {
+  background: var(--card-dark);
+}
+
+.gif-container:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+}
+
+.crop-img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+h2 { margin: 10px 0; }
+
+a {
+  text-decoration: none;
+  color: var(--accent);
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+/* 🎨 Crop colors */
+.maize { --accent:#ffb300; }
+.rice { --accent:#4caf50; }
+.jowar { --accent:#8d6e63; }
+.bajra { --accent:#795548; }
+.groundnut { --accent:#a1887f; }
+.jute { --accent:#607d8b; }
+.cotton { --accent:#90a4ae; }
+.soybean { --accent:#aed581; }
+.tur { --accent:#ff7043; }
+
+/* 🌙 Dark mode button */
+.toggle {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  background: #2e6b2e;
+  color: white;
+}
+
+/* 🌐 Translate */
+#google_translate_element {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: white;
+  padding: 5px 10px;
+  border-radius: 6px;
+}
+</style>
+</head>
+
+<body>
+
+<button class="toggle" onclick="toggleMode()">🌙 Dark Mode</button>
+
+<main class="gif-gallery">
+
+<section class="gif-container maize">
+  <h2><a href="mazie.html">MAIZE</a></h2>
+  <a href="mazie.html"><img src="9f9b3771a2.webp" class="crop-img"></a>
+</section>
+
+<section class="gif-container rice">
+  <h2><a href="rice.html">RICE</a></h2>
+  <a href="rice.html"><img src="ricep.jpg" class="crop-img"></a>
+</section>
+
+<section class="gif-container jowar">
+  <h2><a href="jowar.html">JOWAR</a></h2>
+  <a href="jowar.html"><img src="jowar.jpg" class="crop-img"></a>
+</section>
+
+<section class="gif-container bajra">
+  <h2><a href="bhajar.html">BAJRA</a></h2>
+  <a href="bhajar.html"><img src="bajhar1.png" class="crop-img"></a>
+</section>
+
+<section class="gif-container groundnut">
+  <h2><a href="groundnut.html">GROUNDNUT</a></h2>
+  <a href="groundnut.html"><img src="unnamed.jpg" class="crop-img"></a>
+</section>
+
+<section class="gif-container jute">
+  <h2><a href="jute.html">JUTE</a></h2>
+  <a href="jute.html"><img src="jute.png" class="crop-img"></a>
+</section>
+
+<section class="gif-container cotton">
+  <h2><a href="cotton.html">COTTON</a></h2>
+  <a href="cotton.html"><img src="cotton1.webp" class="crop-img"></a>
+</section>
+
+<section class="gif-container soybean">
+  <h2><a href="soybean.html">SOYBEAN</a></h2>
+  <a href="soybean.html"><img src="soya1.jpg" class="crop-img"></a>
+</section>
+
+<section class="gif-container tur">
+  <h2><a href="tur.html">TUR (ARHAR)</a></h2>
+  <a href="tur.html"><img src="Tur1.webp" class="crop-img"></a>
+</section>
+
+</main>
+
+<div id="google_translate_element"></div>
+
+<script>
+function toggleMode() {
+  document.body.classList.toggle("dark");
+}
+
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    includedLanguages: 'en,hi,mr,or,te',
+    autoDisplay: false
+  }, 'google_translate_element');
+}
+</script>
+
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>

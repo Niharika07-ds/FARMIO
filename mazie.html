@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Maize Information</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f2f6f9;
+        }
+
+        .photo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 15px;
+        }
+
+        .content-box {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(6px);
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 950px;
+            width: 100%;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        img {
+            max-width: 100%;
+            width: 420px;
+            height: auto;
+            border-radius: 12px;
+            margin: 0 auto 25px;
+            display: block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        .photo-info {
+            text-align: center;
+            color: #1e1e1e;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #1b3a57;
+        }
+
+        h3 {
+            font-size: 22px;
+            margin-top: 30px;
+            margin-bottom: 10px;
+            color: #2b5d87;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        ul {
+            text-align: left;
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            border-collapse: collapse;
+            font-size: 17px;
+            background: rgba(255,255,255,0.6);
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+            color: #222;
+        }
+
+        th {
+            background-color: rgba(230, 240, 250, 0.9);
+            font-weight: bold;
+        }
+
+        /* Google Translate */
+        #google_translate_element {
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            z-index: 1000;
+        }
+
+        .goog-logo-link,
+        .goog-te-gadget span {
+            display: none !important;
+        }
+
+        .goog-te-gadget {
+            font-size: 0;
+        }
+
+        .goog-te-combo {
+            background-color: #dff0c2;
+            border: 1px solid #9ccc65;
+            border-radius: 8px;
+            padding: 6px 10px;
+            font-size: 14px;
+            color: #2e5f1f;
+            cursor: pointer;
+        }
+
+        iframe.goog-te-banner-frame {
+            display: none !important;
+        }
+
+        body {
+            top: 0px !important;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="photo-container">
+    <div class="content-box">
+
+        <img src="mazie.webp" alt="Maize Image">
+
+        <div class="photo-info">
+            <h2>Maize</h2>
+
+            <p>
+                Maize, also known as corn, is a major cereal crop grown worldwide.
+                It is a staple food for humans and animals and is used in many food
+                products and industries. Maize is rich in carbohydrates and provides
+                high energy.
+            </p>
+
+            <h3>Why Maize Is Grown in This Season</h3>
+            <p>
+                Maize grows best in warm and moderately wet climates.
+                It requires temperatures between 18°C and 27°C for proper growth.
+                Adequate rainfall during flowering and grain formation helps in
+                achieving high yield.
+            </p>
+
+            <h3>Benefits of Growing Maize</h3>
+            <p>
+                Maize has high market demand and multiple uses such as food, fodder,
+                and industrial products. It gives good yield in a short time and
+                provides stable income to farmers.
+            </p>
+
+            <h3>Maize Farming Tips</h3>
+            <ul>
+                <li>Use high-quality hybrid or certified seeds.</li>
+                <li>Grow in fertile, well-drained soil.</li>
+                <li>Ensure timely irrigation during critical growth stages.</li>
+                <li>Apply fertilizers as recommended.</li>
+                <li>Control weeds and pests regularly.</li>
+                <li>Harvest at proper maturity for best yield.</li>
+            </ul>
+
+            <h3>Maize Growing Information Table</h3>
+            <table>
+                <tr>
+                    <th>Factor</th>
+                    <th>Requirement</th>
+                </tr>
+                <tr>
+                    <td>Best Season</td>
+                    <td>Kharif / Summer</td>
+                </tr>
+                <tr>
+                    <td>Soil Type</td>
+                    <td>Fertile, well-drained soil</td>
+                </tr>
+                <tr>
+                    <td>Temperature</td>
+                    <td>18°C – 27°C</td>
+                </tr>
+                <tr>
+                    <td>Water Requirement</td>
+                    <td>Moderate</td>
+                </tr>
+                <tr>
+                    <td>Sunlight</td>
+                    <td>Full sunlight</td>
+                </tr>
+                <tr>
+                    <td>Harvest Time</td>
+                    <td>90–110 days</td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<div id="google_translate_element"></div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,hi,mr,or,te',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+
+<script type="text/javascript"
+src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+
+</body>
+</html>
