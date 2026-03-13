@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fertilizers</title>
+
+<style>
+:root{
+  --bg-main:#0f1720;
+  --bg-card:#1b2432;
+  --bg-header:#1f2d3d;
+  --green:#3cff6f;
+  --green-soft:#b7ffd1;
+  --text:#e6f7e6;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family: "Segoe UI", Arial, sans-serif;
+  background:linear-gradient(180deg,#0b121a,#10151b);
+  color:var(--text);
+  line-height:1.7;
+}
+
+/* HEADER */
+header{
+  background:var(--bg-header);
+  padding:25px;
+  text-align:center;
+}
+
+header h1{
+  font-size:2.6rem;
+  color:var(--green-soft);
+}
+
+/* NAV */
+nav{
+  display:flex;
+  justify-content:center;
+  gap:25px;
+  padding:12px;
+  background:#1a2633;
+}
+
+nav a{
+  color:var(--text);
+  text-decoration:none;
+  font-weight:600;
+}
+
+nav a:hover{
+  color:var(--green);
+}
+
+/* FILTER BAR */
+.filters{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
+  margin:25px 0;
+}
+
+.filters button{
+  background:transparent;
+  border:2px solid var(--green);
+  color:var(--green);
+  padding:8px 18px;
+  border-radius:25px;
+  cursor:pointer;
+  font-weight:600;
+  transition:.3s;
+}
+
+.filters button:hover{
+  background:var(--green);
+  color:#0f1720;
+}
+
+/* CONTAINER */
+.container{
+  max-width:1100px;
+  margin:25px auto;
+  padding:25px;
+  background:var(--bg-card);
+  border-radius:14px;
+  box-shadow:0 10px 30px rgba(0,0,0,.4);
+}
+
+/* INTRO */
+.container p{
+  color:#d7f7d7;
+}
+
+/* PRODUCT CARD */
+.product{
+  display:flex;
+  gap:20px;
+  padding:20px 0;
+  border-bottom:1px solid rgba(60,255,111,.4);
+}
+
+.product:last-child{
+  border-bottom:none;
+}
+
+/* IMAGE FIXED SIZE */
+.product img{
+  width:260px;
+  height:160px;
+  object-fit:cover;
+  border-radius:14px;
+  flex-shrink:0;
+  box-shadow:0 8px 18px rgba(0,0,0,.5);
+}
+
+/* DETAILS */
+.product-details h2{
+  color:var(--green);
+  margin-bottom:6px;
+}
+
+.product-details p{
+  margin-bottom:6px;
+  color:#e0ffe8;
+  font-size:.95rem;
+}
+
+/* EXTRA INFO */
+.product-details ul{
+  margin-left:18px;
+  font-size:.9rem;
+  color:#bfffd3;
+}
+
+.product:hover{
+  transform:translateY(-4px);
+  transition:.3s;
+}
+
+/* CONTACT */
+.contact{
+  text-align:center;
+  margin:40px 0;
+}
+
+.contact h2{
+  color:var(--green);
+}
+
+/* FOOTER */
+footer{
+  background:#1a2633;
+  text-align:center;
+  padding:15px;
+  font-size:.9rem;
+}
+
+/* TRANSLATE */
+#google_translate_element{
+  position:fixed;
+  top:10px;
+  right:10px;
+  background:white;
+  padding:6px;
+  border-radius:6px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .product{
+    flex-direction:column;
+  }
+  .product img{
+    width:100%;
+    height:190px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Fertilizers</h1>
+</header>
+
+<nav>
+  <a href="#home">Home</a>
+  <a href="#fertilizers">Fertilizers</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<!-- FILTERS -->
+<div class="filters">
+  <button>All</button>
+  <button>Organic</button>
+  <button>Chemical</button>
+  <button>Macronutrients</button>
+  <button>Micronutrients</button>
+</div>
+
+<div class="container" id="home">
+  <p>
+    Fertilizers supply essential nutrients that improve soil fertility, plant growth,
+    crop yield, and resistance to disease. Balanced fertilizer use ensures sustainable
+    agriculture and long-term soil health.
+  </p>
+</div>
+
+<div class="container" id="fertilizers">
+  <h2 style="color:var(--green);margin-bottom:15px;">Our Fertilizers</h2>
+
+  <div class="product">
+    <img src="organic.jpg">
+    <div class="product-details">
+      <h2>Organic Fertilizers</h2>
+      <p>Natural fertilizers made from plant and animal waste.</p>
+      <ul>
+        <li>Improves soil structure</li>
+        <li>Boosts microbial activity</li>
+        <li>Eco-friendly & sustainable</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="product">
+    <img src="pottasium.jpg">
+    <div class="product-details">
+      <h2>Potassium Fertilizers</h2>
+      <p>Enhances plant immunity and fruit quality.</p>
+      <ul>
+        <li>Improves drought resistance</li>
+        <li>Enhances sugar formation</li>
+        <li>Strengthens roots</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="product">
+    <img src="phosphate.jpg">
+    <div class="product-details">
+      <h2>Phosphate Fertilizers</h2>
+      <p>Essential for flowering and root development.</p>
+      <ul>
+        <li>Faster crop maturity</li>
+        <li>Improved seed formation</li>
+        <li>Strong root growth</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="product">
+    <img src="nitrogen.jpg">
+    <div class="product-details">
+      <h2>Nitrogen Fertilizers</h2>
+      <p>Drives leaf growth and chlorophyll production.</p>
+      <ul>
+        <li>Rapid vegetative growth</li>
+        <li>Dark green leaves</li>
+        <li>Higher yield</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="product">
+    <img src="micronutrient.jpg">
+    <div class="product-details">
+      <h2>Micronutrient Fertilizers</h2>
+      <p>Corrects trace-element deficiencies.</p>
+      <ul>
+        <li>Zinc, Iron, Copper support enzymes</li>
+        <li>Prevents leaf yellowing</li>
+        <li>Improves plant metabolism</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="product">
+    <img src="Biofertilizers.jpg">
+    <div class="product-details">
+      <h2>Biofertilizers</h2>
+      <p>Contains beneficial microorganisms.</p>
+      <ul>
+        <li>Fixes atmospheric nitrogen</li>
+        <li>Improves soil fertility</li>
+        <li>Reduces chemical usage</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<div class="contact" id="contact">
+  <h2>Contact Us</h2>
+  <p>Email: supportluna@ecogrow.com | Phone: +1 (555) 123-4567</p>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    <p class="quote">"If the farmer is rich, then so is the nation."</p>
+    <p class="copyright">© 2026 Farmio. All rights reserved.</p>
+</div>
+
+<div id="google_translate_element"></div>
+
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage:'en',
+    includedLanguages:'en,hi,mr,or,te',
+    autoDisplay:false
+  },'google_translate_element');
+}
+</script>
+
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>
