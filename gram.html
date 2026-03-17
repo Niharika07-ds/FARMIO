@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Gram Information</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f2f6f9;
+        }
+
+        .photo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 15px;
+            animation: fadeIn 1.2s ease-in;
+        }
+
+        .content-box {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(6px);
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 950px;
+            width: 100%;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        img {
+            max-width: 100%;
+            width: 420px;
+            height: auto;
+            border-radius: 12px;
+            margin: 0 auto 25px;
+            display: block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        .photo-info {
+            text-align: center;
+            color: #1e1e1e;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #1b3a57;
+        }
+
+        h3 {
+            font-size: 22px;
+            margin-top: 30px;
+            margin-bottom: 10px;
+            color: #2b5d87;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        ul {
+            text-align: left;
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            border-collapse: collapse;
+            font-size: 17px;
+            background: rgba(255,255,255,0.6);
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+            color: #222;
+        }
+
+        th {
+            background-color: rgba(230, 240, 250, 0.9);
+            font-weight: bold;
+        }
+
+        /* Google Translate */
+        #google_translate_element {
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            z-index: 1000;
+        }
+
+        .goog-logo-link,
+        .goog-te-gadget span {
+            display: none !important;
+        }
+
+        .goog-te-gadget {
+            font-size: 0;
+        }
+
+        .goog-te-combo {
+            background-color: #dff0c2;
+            border: 1px solid #9ccc65;
+            border-radius: 8px;
+            padding: 6px 10px;
+            font-size: 14px;
+            color: #2e5f1f;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .goog-te-combo:hover {
+            background-color: #cde9a5;
+        }
+
+        iframe.goog-te-banner-frame {
+            display: none !important;
+        }
+
+        body {
+            top: 0px !important;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="photo-container">
+    <div class="content-box">
+
+        <img src="gram2.jpg" alt="Gram Image">
+
+        <div class="photo-info">
+            <h2>Gram</h2>
+
+            <p>
+                Gram, commonly known as chickpea (<b>Cicer arietinum</b>), is an important legume crop
+                widely consumed for its high nutritional value. It is a rich source of protein,
+                dietary fiber, vitamins, and minerals, making it a staple food in many countries.
+            </p>
+
+            <p>
+                Gram is available in various forms such as whole chickpeas, split chickpeas (chana dal),
+                and chickpea flour (besan). It supports digestive health, helps control blood sugar,
+                and improves heart health.
+            </p>
+
+            <h3>Why Gram Is Grown in This Season</h3>
+            <p>
+                Gram is mainly grown during the Rabi season as it requires cool and dry climatic
+                conditions. It has low water requirements and adapts well to semi-arid regions.
+            </p>
+
+            <h3>Benefits of Growing Gram</h3>
+            <p>
+                Gram improves soil fertility by fixing nitrogen in the soil.
+                It has good market demand and provides stable income to farmers.
+            </p>
+
+            <h3>Gram Farming Tips</h3>
+            <ul>
+                <li>Select certified disease-resistant seeds.</li>
+                <li>Use well-drained loamy soil.</li>
+                <li>Avoid excess irrigation.</li>
+                <li>Apply organic manure before sowing.</li>
+                <li>Harvest when pods are fully mature.</li>
+            </ul>
+
+            <h3>Gram Growing Information Table</h3>
+            <table>
+                <tr>
+                    <th>Factor</th>
+                    <th>Requirement</th>
+                </tr>
+                <tr>
+                    <td>Best Season</td>
+                    <td>Winter (Rabi)</td>
+                </tr>
+                <tr>
+                    <td>Soil Type</td>
+                    <td>Well-drained loamy soil</td>
+                </tr>
+                <tr>
+                    <td>Temperature</td>
+                    <td>18°C – 30°C</td>
+                </tr>
+                <tr>
+                    <td>Water Requirement</td>
+                    <td>Low</td>
+                </tr>
+                <tr>
+                    <td>Harvest Time</td>
+                    <td>90 – 120 days</td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<div id="google_translate_element"></div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,hi,mr,or,te',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+
+<script type="text/javascript"
+src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+
+</body>
+</html>
