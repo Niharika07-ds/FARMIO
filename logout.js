@@ -3,14 +3,24 @@ import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/fi
 import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDs06guUm1JtMwlESrgaW9GiU7BG80wfNo",
-  authDomain: "telemed-30991.firebaseapp.com",
-  projectId: "telemed-30991"
+  apiKey: "AIzaSyBqX1e9865_CMVhZ_tCNlmhKSijemufGTo",
+  authDomain: "luna-ac909.firebaseapp.com",
+  projectId: "luna-ac909",
+  
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+
+// ✅ ADD THIS
+setPersistence(auth, browserLocalPersistence)
+  .then(() => {
+    console.log("Persistence enabled");
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
@@ -18,8 +28,7 @@ onAuthStateChanged(auth, async (user) => {
     return;
   }
 
-  const uid = localStorage.getItem("loggedInUserId");
-  if (!uid) return;
+  const uid = user.uid;
 
   const snap = await getDoc(doc(db, "users", uid));
   if (snap.exists()) {
@@ -28,10 +37,4 @@ onAuthStateChanged(auth, async (user) => {
     document.getElementById("loggedUserLName").innerText = data.lastName;
     document.getElementById("loggedUserEmail").innerText = data.email;
   }
-});
-
-document.getElementById("logout").addEventListener("click", async () => {
-  await signOut(auth);
-  localStorage.removeItem("loggedInUserId");
-  window.location.href = "login.html";
 });
