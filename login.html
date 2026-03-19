@@ -38,7 +38,6 @@
         <input type="password" id="rPassword" placeholder="Password">
     </div>
 
-    <!-- IMPORTANT FIX HERE -->
     <button type="button" class="btn" id="submitSignUp">Sign Up</button>
 
     <p class="or">---------- or ----------</p>
@@ -63,7 +62,6 @@
         <input type="password" id="password" placeholder="Password">
     </div>
 
-    <!-- IMPORTANT FIX HERE -->
     <button type="button" class="btn" id="submitSignIn">Sign In</button>
 
     <p class="or">---------- or ----------</p>
@@ -97,6 +95,8 @@ signInButton.onclick = () => {
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
 import {
   getAuth,
+  setPersistence,
+  browserLocalPersistence,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
@@ -106,20 +106,26 @@ import {
   doc
 } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
 
+// ======= USE SAME FIREBASE PROJECT FOR ALL PAGES =======
 const firebaseConfig = {
-  apiKey: "AIzaSyDs06guUm1JtMwlESrgaW9GiU7BG80wfNo",
-  authDomain: "telemed-30991.firebaseapp.com",
-  projectId: "telemed-30991",
-  storageBucket: "telemed-30991.appspot.com",
-  messagingSenderId: "1537577672",
-  appId: "1:1537577672:web:f426ec741a21a4b53a4bfd"
+  apiKey: "AIzaSyBqX1e9865_CMVhZ_tCNlmhKSijemufGTo",
+  authDomain: "luna-ac909.firebaseapp.com",
+  projectId: "luna-ac909",
+  storageBucket: "luna-ac909.firebasestorage.app",
+  messagingSenderId: "237924409569",
+  appId: "1:237924409569:web:834d6eb59d3536ae7e57a0"
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-/* -------- SIGN UP -------- */
+// ======= ENABLE PERSISTENCE =======
+setPersistence(auth, browserLocalPersistence)
+  .then(() => console.log("Persistence enabled"))
+  .catch(err => console.error(err));
+
+// -------- SIGN UP --------
 document.getElementById("submitSignUp").addEventListener("click", async () => {
   try {
     const fName = document.getElementById("fName").value;
@@ -135,7 +141,7 @@ document.getElementById("submitSignUp").addEventListener("click", async () => {
       email: email
     });
 
-    localStorage.setItem("loggedInUserId", userCred.user.uid);
+    // ✅ NO localStorage here
     window.location.href = "dashboard.html";
 
   } catch (err) {
@@ -143,14 +149,15 @@ document.getElementById("submitSignUp").addEventListener("click", async () => {
   }
 });
 
-/* -------- SIGN IN -------- */
+// -------- SIGN IN --------
 document.getElementById("submitSignIn").addEventListener("click", async () => {
   try {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
     const userCred = await signInWithEmailAndPassword(auth, email, password);
-    localStorage.setItem("loggedInUserId", userCred.user.uid);
+
+    // ✅ NO localStorage here
     window.location.href = "dashboard.html";
 
   } catch (err) {
