@@ -1,183 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CROPS</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Major Crops</title>
 
-<style>
-:root {
-  --bg-light: #e6f6d6;
-  --bg-dark: #0f1a12;
-  --card-light: #f9fff4;
-  --card-dark: #1b2a20;
-  --text-light: #2f4f2f;
-  --text-dark: #e5f6e5;
-  --accent: #2e7d32;
-}
+  <style>
+    /* RESET */
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
 
-body {
-  margin: 0;
-  font-family: "Segoe UI", Arial, sans-serif;
-  background: var(--bg-light);
-  color: var(--text-light);
-  min-height: 100vh;
-  transition: 0.3s;
-}
+    body {
+      font-family: Arial, sans-serif;
 
-body.dark {
-  background: var(--bg-dark);
-  color: var(--text-dark);
-}
+      /* Background Image */
+      background-image: url('crop.png');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+      background-attachment: fixed;
 
-/* 🌙 Dark mode button (pill style like image) */
-.toggle {
-  position: fixed;
-  top: 12px;
-  left: 12px;
-  padding: 6px 14px;
-  border-radius: 20px;
-  border: none;
-  cursor: pointer;
-  background: #2e7d32;
-  color: white;
-  font-size: 0.85rem;
-  font-weight: 600;
-  z-index: 1000;
-}
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;   /* Important for sticky footer */
 
-/* 🧭 Breadcrumb (subtle, not dominant) */
-.breadcrumb {
-  max-width: 1200px;
-  margin: 70px auto 10px;
-  padding: 0 20px;
-  font-size: 0.85rem;
-}
+      color: #ffffff;
+      position: relative;
+    }
 
-.breadcrumb a {
-  color: #4caf50;
-  text-decoration: none;
-  font-weight: 600;
-}
+    /* Dark Overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: -1;
+    }
 
-/* 📱 Grid – centered like image */
-.gif-gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  padding: 20px 40px 60px;
-  max-width: 900px;
-  margin: 150px auto 40px;
-}
-/* Card style */
-.gif-container {
-  background: var(--card-light);
-  border: 1.8px solid #b6d7a8;
-  border-radius: 16px;
-  padding: 14px;
-  text-align: left;
-  transition: 0.25s;
-}
+    /* Main Content Wrapper */
+    .main-content {
+      flex: 1;   /* Pushes footer to bottom */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
 
-body.dark .gif-container {
-  background: var(--card-dark);
-  border-color: #355f3b;
-}
+    h1 {
+      margin-top: 60px;
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
 
-.gif-container:hover {
-  transform: translateY(-4px);
-}
+    .subtitle {
+      margin-top: 10px;
+      font-size: 16px;
+      opacity: 0.9;
+    }
 
-/* Image style */
-.crop-img {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-top: 8px;
-}
+    .crop-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 50px;
+    }
 
-/* Title */
-h2 {
-  margin: 0;
-  font-size: 1.05rem;
-}
+    .crop-day {
+      width: 240px;
+      height: 120px;
+      background: linear-gradient(135deg, #ffcc33, #ff9900);
+      color: #2b2b2b;
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+      transition: all 0.3s ease;
+    }
 
-a {
-  text-decoration: none;
-  color: #2e7d32;
-  font-weight: 700;
-}
+    .crop-day span {
+      font-size: 28px;
+      margin-bottom: 6px;
+    }
 
-/* 🌐 Translator */
-#google_translate_element {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  background: white;
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-size: 0.8rem;
-}
+    .crop-day:hover {
+      transform: translateY(-8px) scale(1.05);
+      background: linear-gradient(135deg, #ffa500, #ffcc33);
+    }
 
-</style>
+    /* ================= FOOTER ================= */
+
+    .footer {
+      background: rgba(0, 0, 0, 0.9);
+      color: #ffffff;
+      text-align: center;
+      padding: 20px 10px;
+    }
+
+    .footer p {
+      margin: 5px 0;
+    }
+
+    .footer .quote {
+      font-size: 18px;
+      font-style: italic;
+      color: #d4ffd4;
+    }
+
+    .footer .copyright {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    /* Google Translate */
+    #google_translate_element {
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      z-index: 1000;
+    }
+  </style>
 </head>
 
 <body>
 
-<button class="toggle" onclick="toggleMode()">🌙 Dark Mode</button>
+  <div class="main-content">
+    <h1>🌾 MAJOR CROPS IN INDIA</h1>
+    <div class="subtitle">Select a season to explore crops grown in India</div>
 
-<main class="gif-gallery">
+    <div class="crop-container">
+      <div class="crop-day" onclick="location.href='kharif.html'">
+        <span>🌧️</span> KHARIF
+      </div>
 
-<section class="gif-container">
-  <h2><a href="wheat.html">WHEAT</a></h2>
-  <a href="wheat.html"><img src="wheat1.jpg" class="crop-img"></a>
-</section>
+      <div class="crop-day" onclick="location.href='rabi.html'">
+        <span>❄️</span> RABI
+      </div>
 
-<section class="gif-container">
-  <h2><a href="barley.html">BARLEY</a></h2>
-  <a href="barley.html"><img src="barely1.jpg" class="crop-img"></a>
-</section>
+      <div class="crop-day" onclick="location.href='zadi.html'">
+        <span>☀️</span> ZAID
+      </div>
+    </div>
+  </div>
 
-<section class="gif-container">
-  <h2><a href="oats.html">OATS</a></h2>
-  <a href="oats.html"><img src="oats1.jpg" class="crop-img"></a>
-</section>
+  <!-- FOOTER -->
+  <div class="footer">
+    <p class="quote">"If the farmer is rich, then so is the nation."</p>
+    <p class="copyright">© 2026 Farmio. All rights reserved.</p>
+  </div>
 
-<section class="gif-container">
-  <h2><a href="gram.html">GRAM</a></h2>
-  <a href="gram.html"><img src="gram2.jpg" class="crop-img"></a>
-</section>
+  <!-- Google Translate -->
+  <div id="google_translate_element"></div>
 
-<section class="gif-container">
-  <h2><a href="mustard.html">MUSTARD</a></h2>
-  <a href="mustard.html"><img src="mustared1.avif" class="crop-img"></a>
-</section>
+  <script>
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,hi,mr,or,te',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
 
-<section class="gif-container">
-  <h2><a href="linseed.html">LINSEED</a></h2>
-  <a href="linseed.html"><img src="linseed1.jpg" class="crop-img"></a>
-</section>
-
-</main>
-
-<div id="google_translate_element"></div>
-
-<script>
-function toggleMode() {
-  document.body.classList.toggle("dark");
-}
-
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({
-    pageLanguage: 'en',
-    includedLanguages: 'en,hi,mr,or,te',
-    autoDisplay: false
-  }, 'google_translate_element');
-}
-</script>
-
-<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <script
+    src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+  </script>
 
 </body>
 </html>
