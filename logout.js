@@ -19,7 +19,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyCiEvlgpEHo2YG-swUgsQzUM3RwYXXM8Jo",
   authDomain: "farmio-30e87.firebaseapp.com",
   projectId: "farmio-30e87",
-  storageBucket: "farmio-30e87.firebasestorage.app",
+  storageBucket: "farmio-30e87.appspot.com"
   messagingSenderId: "619990775055",
   appId: "1:619990775055:web:e3a1e661e8e696cd4c7a7a"
 };
