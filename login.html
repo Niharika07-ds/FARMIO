@@ -2,63 +2,85 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Login & Register</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register & Login - Farmio</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="./login.css">
 </head>
 
 <body>
 
-<!-- SIGN UP FORM -->
+<!-- SIGNUP FORM -->
 <div class="container" id="signup" style="display:none;">
-    <h1>Register</h1>
+  <h1 class="form-title">Register</h1>
+  <form>
+    <div id="signUpMessage" class="messageDiv" style="display:none;"></div>
 
-    <label for="fName">First Name</label>
-    <input type="text" id="fName" placeholder="Enter First Name">
+    <div class="input-group">
+       <i class="fas fa-user"></i>
+       <input type="text" id="fName" placeholder="First Name" required>
+       <label for="fName">First Name</label>
+    </div>
+    <div class="input-group">
+        <i class="fas fa-user"></i>
+        <input type="text" id="lName" placeholder="Last Name" required>
+        <label for="lName">Last Name</label>
+    </div>
+    <div class="input-group">
+        <i class="fas fa-envelope"></i>
+        <input type="email" id="rEmail" placeholder="Email" required>
+        <label for="rEmail">Email</label>
+    </div>
+    <div class="input-group">
+        <i class="fas fa-lock"></i>
+        <input type="password" id="rPassword" placeholder="Password" required>
+        <label for="rPassword">Password</label>
+    </div>
 
-    <label for="lName">Last Name</label>
-    <input type="text" id="lName" placeholder="Enter Last Name">
+    <button class="btn" id="submitSignUp">Sign Up</button>
+  </form>
 
-    <label for="rEmail">Email</label>
-    <input type="email" id="rEmail" placeholder="Enter Email">
-
-    <label for="rPassword">Password</label>
-    <input type="password" id="rPassword" placeholder="Enter Password">
-
-    <button id="submitSignUp">Sign Up</button>
-    <p>Already have an account? <span class="toggle-link" id="signInButton">Sign In</span></p>
+  <div class="links">
+    <p>Already Have an Account?</p>
+    <button id="signInButton">Sign In</button>
+  </div>
 </div>
 
-<!-- SIGN IN FORM -->
-<div class="container" id="signIn" style="display:block;">
-    <h1>Sign In</h1>
+<!-- LOGIN FORM -->
+<div class="container" id="signIn">
+  <h1 class="form-title">Sign In</h1>
+  <form>
+    <div id="signInMessage" class="messageDiv" style="display:none;"></div>
 
-    <label for="email">Email</label>
-    <input type="email" id="email" placeholder="Enter Email">
+    <div class="input-group">
+        <i class="fas fa-envelope"></i>
+        <input type="email" id="email" placeholder="Email" required>
+        <label for="email">Email</label>
+    </div>
+    <div class="input-group">
+        <i class="fas fa-lock"></i>
+        <input type="password" id="password" placeholder="Password" required>
+        <label for="password">Password</label>
+    </div>
+    <p class="recover">
+      <a href="#">Recover Password</a>
+    </p>
 
-    <label for="password">Password</label>
-    <input type="password" id="password" placeholder="Enter Password">
+    <button class="btn" id="submitSignIn">Sign In</button>
+  </form>
 
-    <button id="submitSignIn">Sign In</button>
-    <p>Don’t have an account? <span class="toggle-link" id="signUpButton">Sign Up</span></p>
+  <div class="links">
+    <p>Don't have an account yet?</p>
+    <button id="signUpButton">Sign Up</button>
+  </div>
 </div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  setPersistence,
-  browserLocalPersistence
-} from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
-import {
-  getFirestore,
-  setDoc,
-  doc
-} from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
 
-// Firebase config
+// ✅ Firebase config (corrected storageBucket)
 const firebaseConfig = {
   apiKey: "AIzaSyCiEvlgpEHo2YG-swUgsQzUM3RwYXXM8Jo",
   authDomain: "farmio-30e87.firebaseapp.com",
@@ -72,88 +94,67 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// Keep login session
+// Keep user logged in
 setPersistence(auth, browserLocalPersistence);
 
-// Toggle forms
+// Toggle between forms
 const signUpButton = document.getElementById('signUpButton');
 const signInButton = document.getElementById('signInButton');
 const signInForm = document.getElementById('signIn');
 const signUpForm = document.getElementById('signup');
 
-signUpButton.onclick = () => {
+signUpButton.addEventListener('click', () => {
     signInForm.style.display = "none";
     signUpForm.style.display = "block";
-};
-signInButton.onclick = () => {
-    signUpForm.style.display = "none";
+});
+signInButton.addEventListener('click', () => {
     signInForm.style.display = "block";
-};
+    signUpForm.style.display = "none";
+});
 
-// SIGN UP
-document.getElementById("submitSignUp").addEventListener("click", async () => {
-  try {
+// ✅ Signup logic
+document.getElementById("submitSignUp").addEventListener("click", async (e) => {
+    e.preventDefault();
     const fName = document.getElementById("fName").value.trim();
     const lName = document.getElementById("lName").value.trim();
     const email = document.getElementById("rEmail").value.trim();
     const password = document.getElementById("rPassword").value;
 
-    if (!fName || !lName || !email || !password) {
-      alert("Please fill all fields");
-      return;
+    if (!fName || !lName || !email || !password) { alert("Please fill all fields"); return; }
+    if (password.length < 6) { alert("Password must be at least 6 characters"); return; }
+
+    try {
+        const userCred = await createUserWithEmailAndPassword(auth, email, password);
+        await setDoc(doc(db, "users", userCred.user.uid), { firstName: fName, lastName: lName, email });
+        alert("Account created successfully ✅");
+        fName.value = lName.value = email.value = password.value = "";
+        window.location.href = "login.html"; // or dashboard.html
+    } catch (err) {
+        if (err.code === "auth/email-already-in-use") alert("Email already registered.");
+        else if (err.code === "auth/invalid-email") alert("Invalid email format.");
+        else if (err.code === "auth/weak-password") alert("Password too weak.");
+        else alert(err.message);
     }
-
-    const userCred = await createUserWithEmailAndPassword(auth, email, password);
-
-    await setDoc(doc(db, "users", userCred.user.uid), {
-      firstName: fName,
-      lastName: lName,
-      email: email
-    });
-
-    alert("Account created successfully ✅");
-    window.location.href = "dashboard.html";
-
-  } catch (err) {
-    if (err.code === "auth/email-already-in-use") {
-      alert("Email already registered. Please login.");
-    } else if (err.code === "auth/invalid-email") {
-      alert("Invalid email format.");
-    } else if (err.code === "auth/weak-password") {
-      alert("Password should be at least 6 characters.");
-    } else {
-      alert(err.message);
-    }
-  }
 });
 
-// SIGN IN
-document.getElementById("submitSignIn").addEventListener("click", async () => {
-  try {
+// ✅ Login logic
+document.getElementById("submitSignIn").addEventListener("click", async (e) => {
+    e.preventDefault();
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
 
-    if (!email || !password) {
-      alert("Enter email and password");
-      return;
+    if (!email || !password) { alert("Enter email and password"); return; }
+
+    try {
+        await signInWithEmailAndPassword(auth, email, password);
+        alert("Login successful ✅");
+        window.location.href = "dashboard.html"; // your dashboard page
+    } catch (err) {
+        if (err.code === "auth/user-not-found") alert("No account found. Sign up first.");
+        else if (err.code === "auth/wrong-password") alert("Incorrect password.");
+        else if (err.code === "auth/invalid-email") alert("Invalid email format.");
+        else alert(err.message);
     }
-
-    await signInWithEmailAndPassword(auth, email, password);
-
-    alert("Login successful ✅");
-    window.location.href = "dashboard.html";
-
-  } catch (err) {
-    if (err.code === "auth/user-not-found") {
-      alert("No account found. Please sign up.");
-    } else if (err.code === "auth/wrong-password") {
-      alert("Incorrect password.");
-    } else if (err.code === "auth/invalid-email") {
-      alert("Invalid email format.");
-    } else {
-      alert(err.message);
-    }
-  }
 });
 </script>
 
