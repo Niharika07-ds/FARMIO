@@ -80,7 +80,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/fireba
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
 import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
 
-// ✅ Firebase config (corrected storageBucket)
+// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyCiEvlgpEHo2YG-swUgsQzUM3RwYXXM8Jo",
   authDomain: "farmio-30e87.firebaseapp.com",
@@ -112,7 +112,13 @@ signInButton.addEventListener('click', () => {
     signUpForm.style.display = "none";
 });
 
-// ✅ Signup logic
+// Helper function for strict email validation
+function isValidEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+}
+
+// Signup logic
 document.getElementById("submitSignUp").addEventListener("click", async (e) => {
     e.preventDefault();
     const fName = document.getElementById("fName").value.trim();
@@ -121,6 +127,7 @@ document.getElementById("submitSignUp").addEventListener("click", async (e) => {
     const password = document.getElementById("rPassword").value;
 
     if (!fName || !lName || !email || !password) { alert("Please fill all fields"); return; }
+    if (!isValidEmail(email)) { alert("Please enter a valid email address"); return; }
     if (password.length < 6) { alert("Password must be at least 6 characters"); return; }
 
     try {
@@ -137,13 +144,14 @@ document.getElementById("submitSignUp").addEventListener("click", async (e) => {
     }
 });
 
-// ✅ Login logic
+// Login logic
 document.getElementById("submitSignIn").addEventListener("click", async (e) => {
     e.preventDefault();
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
 
     if (!email || !password) { alert("Enter email and password"); return; }
+    if (!isValidEmail(email)) { alert("Please enter a valid email address"); return; }
 
     try {
         await signInWithEmailAndPassword(auth, email, password);
