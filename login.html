@@ -1,79 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Login & Register</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Login & Register</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <!-- Your CSS -->
-    <link rel="stylesheet" href="./login.css">
+<link rel="stylesheet" href="./login.css">
 </head>
 
 <body>
 
-<!-- ================= SIGN UP ================= -->
+<!-- SIGN UP -->
 <div class="container" id="signup" style="display:none;">
-    <h1 class="form-title">Register</h1>
+    <h1>Register</h1>
 
-    <div class="input-group">
-        <i class="fas fa-user"></i>
-        <input type="text" id="fName" placeholder="First Name">
-    </div>
+    <input type="text" id="fName" placeholder="First Name">
+    <input type="text" id="lName" placeholder="Last Name">
+    <input type="email" id="rEmail" placeholder="Email">
+    <input type="password" id="rPassword" placeholder="Password">
 
-    <div class="input-group">
-        <i class="fas fa-user"></i>
-        <input type="text" id="lName" placeholder="Last Name">
-    </div>
+    <button id="submitSignUp">Sign Up</button>
 
-    <div class="input-group">
-        <i class="fas fa-envelope"></i>
-        <input type="email" id="rEmail" placeholder="Email">
-    </div>
-
-    <div class="input-group">
-        <i class="fas fa-lock"></i>
-        <input type="password" id="rPassword" placeholder="Password">
-    </div>
-
-    <button type="button" class="btn" id="submitSignUp">Sign Up</button>
-
-    <p class="or">---------- or ----------</p>
-
-    <div class="links">
-        <p>Already have an account?</p>
-        <button id="signInButton">Sign In</button>
-    </div>
+    <p>Already have an account?</p>
+    <button id="signInButton">Sign In</button>
 </div>
 
-<!-- ================= SIGN IN ================= -->
+<!-- SIGN IN -->
 <div class="container" id="signIn">
-    <h1 class="form-title">Sign In</h1>
+    <h1>Sign In</h1>
 
-    <div class="input-group">
-        <i class="fas fa-envelope"></i>
-        <input type="email" id="email" placeholder="Email">
-    </div>
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
 
-    <div class="input-group">
-        <i class="fas fa-lock"></i>
-        <input type="password" id="password" placeholder="Password">
-    </div>
+    <button id="submitSignIn">Sign In</button>
 
-    <button type="button" class="btn" id="submitSignIn">Sign In</button>
-
-    <p class="or">---------- or ----------</p>
-
-    <div class="links">
-        <p>Don’t have an account?</p>
-        <button id="signUpButton">Sign Up</button>
-    </div>
+    <p>Don’t have an account?</p>
+    <button id="signUpButton">Sign Up</button>
 </div>
 
-<!-- ================= TOGGLE SCRIPT ================= -->
 <script>
+// Toggle
 const signUpButton = document.getElementById('signUpButton');
 const signInButton = document.getElementById('signInButton');
 const signInForm = document.getElementById('signIn');
@@ -90,16 +56,16 @@ signInButton.onclick = () => {
 };
 </script>
 
-<!-- ================= FIREBASE AUTH SCRIPT ================= -->
+<!-- FIREBASE -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
 
 import {
   getAuth,
-  setPersistence,
-  browserLocalPersistence,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  setPersistence,
+  browserLocalPersistence
 } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
 
 import {
@@ -108,7 +74,7 @@ import {
   doc
 } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
 
-// ✅ YOUR NEW PROJECT ONLY
+// ✅ YOUR FIREBASE CONFIG
 const firebaseConfig = {
   apiKey: "AIzaSyCiEvlgpEHo2YG-swUgsQzUM3RwYXXM8Jo",
   authDomain: "farmio-30e87.firebaseapp.com",
@@ -122,16 +88,21 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// ✅ KEEP USER LOGGED IN
+// Keep login session
 setPersistence(auth, browserLocalPersistence);
 
-// -------- SIGN UP --------
+// SIGN UP
 document.getElementById("submitSignUp").addEventListener("click", async () => {
   try {
     const fName = document.getElementById("fName").value.trim();
     const lName = document.getElementById("lName").value.trim();
     const email = document.getElementById("rEmail").value.trim();
     const password = document.getElementById("rPassword").value;
+
+    if (!fName || !lName || !email || !password) {
+      alert("Please fill all fields");
+      return;
+    }
 
     const userCred = await createUserWithEmailAndPassword(auth, email, password);
 
@@ -149,11 +120,16 @@ document.getElementById("submitSignUp").addEventListener("click", async () => {
   }
 });
 
-// -------- SIGN IN --------
+// SIGN IN
 document.getElementById("submitSignIn").addEventListener("click", async () => {
   try {
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
+
+    if (!email || !password) {
+      alert("Enter email and password");
+      return;
+    }
 
     await signInWithEmailAndPassword(auth, email, password);
 
@@ -164,6 +140,7 @@ document.getElementById("submitSignIn").addEventListener("click", async () => {
     alert(err.message);
   }
 });
-</script> 
+</script>
+
 </body>
 </html>
