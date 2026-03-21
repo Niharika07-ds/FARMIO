@@ -118,12 +118,13 @@ body {
     <p>Sign up to continue</p>
 
     <!-- Email/Password Signup (optional, frontend only) -->
-    <form>
-        <input type="text" placeholder="Name" required>
-        <input type="email" placeholder="Email" required>
-        <input type="password" placeholder="Password" required>
-        <button type="submit" class="main-btn">Sign up</button>
-    </form>
+<form onsubmit="signup(event)">
+    <input id="fname" type="text" placeholder="First Name" required>
+    <input id="lname" type="text" placeholder="Last Name" required>
+    <input id="email" type="email" placeholder="Email" required>
+    <input id="password" type="password" placeholder="Password" required>
+    <button type="submit" class="main-btn">Sign up</button>
+</form>
 
     <div class="divider">ACCESS QUICKLY</div>
 
@@ -139,40 +140,59 @@ body {
 
 <!-- Firebase -->
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import {
-  getAuth,
-  GoogleAuthProvider,
-  FacebookAuthProvider,
-  signInWithPopup
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
 
-/* 🔥 REPLACE WITH YOUR FIREBASE CONFIG */
+import { 
+  getAuth, 
+  createUserWithEmailAndPassword 
+} from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+
+import { 
+  getFirestore, 
+  doc, 
+  setDoc 
+} from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
+
+// ✅ YOUR REAL FIREBASE CONFIG
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyCiEvlgpEHo2YG-swUgsQzUM3RwYXXM8Jo",
+  authDomain: "farmio-30e87.firebaseapp.com",
+  projectId: "farmio-30e87",
+  storageBucket: "farmio-30e87.firebasestorage.app",
+  messagingSenderId: "619990775055",
+  appId: "1:619990775055:web:e3a1e661e8e696cd4c7a7a"
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
 
-const googleProvider = new GoogleAuthProvider();
-const facebookProvider = new FacebookAuthProvider();
+// ✅ SIGNUP FUNCTION
+window.signup = async function (event) {
+  event.preventDefault(); // STOP PAGE RELOAD
 
-window.googleLogin = () => {
-  signInWithPopup(auth, googleProvider)
-    .then(() => window.location.href = "dashboard.html")
-    .catch(err => alert(err.message));
-};
+  const fname = document.getElementById("fname").value;
+  const lname = document.getElementById("lname").value;
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
 
-window.facebookLogin = () => {
-  signInWithPopup(auth, facebookProvider)
-    .then(() => window.location.href = "dashboard.html")
-    .catch(err => alert(err.message));
+  try {
+    const userCred = await createUserWithEmailAndPassword(auth, email, password);
+
+    // Save extra user data
+    await setDoc(doc(db, "users", userCred.user.uid), {
+      firstName: fname,
+      lastName: lname,
+      email: email
+    });
+
+    alert("Account created successfully ✅");
+    window.location.href = "login.html";
+
+  } catch (error) {
+    alert(error.message);
+  }
 };
 </script>
-
 </body>
 </html>
