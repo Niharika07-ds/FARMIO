@@ -92,45 +92,45 @@ signInButton.onclick = () => {
 
 <!-- ================= FIREBASE AUTH SCRIPT ================= -->
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+
 import {
   getAuth,
   setPersistence,
   browserLocalPersistence,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
+} from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+
 import {
   getFirestore,
   setDoc,
   doc
-} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
 
-// ======= USE SAME FIREBASE PROJECT FOR ALL PAGES =======
+// ✅ YOUR NEW PROJECT ONLY
 const firebaseConfig = {
-  apiKey: "AIzaSyBqX1e9865_CMVhZ_tCNlmhKSijemufGTo",
-  authDomain: "luna-ac909.firebaseapp.com",
-  projectId: "luna-ac909",
-  storageBucket: "luna-ac909.firebasestorage.app",
-  messagingSenderId: "237924409569",
-  appId: "1:237924409569:web:834d6eb59d3536ae7e57a0"
+  apiKey: "AIzaSyCiEvlgpEHo2YG-swUgsQzUM3RwYXXM8Jo",
+  authDomain: "farmio-30e87.firebaseapp.com",
+  projectId: "farmio-30e87",
+  storageBucket: "farmio-30e87.firebasestorage.app",
+  messagingSenderId: "619990775055",
+  appId: "1:619990775055:web:e3a1e661e8e696cd4c7a7a"
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// ======= ENABLE PERSISTENCE =======
-setPersistence(auth, browserLocalPersistence)
-  .then(() => console.log("Persistence enabled"))
-  .catch(err => console.error(err));
+// ✅ KEEP USER LOGGED IN
+setPersistence(auth, browserLocalPersistence);
 
 // -------- SIGN UP --------
 document.getElementById("submitSignUp").addEventListener("click", async () => {
   try {
-    const fName = document.getElementById("fName").value;
-    const lName = document.getElementById("lName").value;
-    const email = document.getElementById("rEmail").value;
+    const fName = document.getElementById("fName").value.trim();
+    const lName = document.getElementById("lName").value.trim();
+    const email = document.getElementById("rEmail").value.trim();
     const password = document.getElementById("rPassword").value;
 
     const userCred = await createUserWithEmailAndPassword(auth, email, password);
@@ -141,7 +141,7 @@ document.getElementById("submitSignUp").addEventListener("click", async () => {
       email: email
     });
 
-    // ✅ NO localStorage here
+    alert("Account created successfully ✅");
     window.location.href = "dashboard.html";
 
   } catch (err) {
@@ -152,19 +152,18 @@ document.getElementById("submitSignUp").addEventListener("click", async () => {
 // -------- SIGN IN --------
 document.getElementById("submitSignIn").addEventListener("click", async () => {
   try {
-    const email = document.getElementById("email").value;
+    const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
 
-    const userCred = await signInWithEmailAndPassword(auth, email, password);
+    await signInWithEmailAndPassword(auth, email, password);
 
-    // ✅ NO localStorage here
+    alert("Login successful ✅");
     window.location.href = "dashboard.html";
 
   } catch (err) {
     alert(err.message);
   }
 });
-</script>
-
+</script> 
 </body>
 </html>
