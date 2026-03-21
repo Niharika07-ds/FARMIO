@@ -111,7 +111,7 @@ nav a:hover{
   border-bottom:none;
 }
 
-/* IMAGE FIXED SIZE */
+/* IMAGE */
 .product img{
   width:260px;
   height:160px;
@@ -155,12 +155,23 @@ nav a:hover{
   color:var(--green);
 }
 
-/* FOOTER */
-footer{
-  background:#1a2633;
+/* FOOTER (TRANSPARENT + CENTERED) */
+.footer{
+  background:transparent;
   text-align:center;
-  padding:15px;
+  padding:20px;
   font-size:.9rem;
+  color:var(--green-soft);
+}
+
+.footer .quote{
+  font-style:italic;
+  margin-bottom:6px;
+}
+
+.footer .copyright{
+  font-size:.85rem;
+  opacity:0.8;
 }
 
 /* TRANSLATE */
@@ -178,6 +189,7 @@ footer{
   .product{
     flex-direction:column;
   }
+
   .product img{
     width:100%;
     height:190px;
@@ -198,7 +210,6 @@ footer{
   <a href="#contact">Contact</a>
 </nav>
 
-<!-- FILTERS -->
 <div class="filters">
   <button>All</button>
   <button>Organic</button>
@@ -300,13 +311,13 @@ footer{
 
 <div class="contact" id="contact">
   <h2>Contact Us</h2>
-  <p>Email: supportluna@ecogrow.com | Phone: +1 (555) 123-4567</p>
+  <p>Email: supportfarmio@ecogrow.com | Phone: +1 (555) 123-4567</p>
 </div>
 
 <!-- FOOTER -->
 <div class="footer">
-    <p class="quote">"If the farmer is rich, then so is the nation."</p>
-    <p class="copyright">© 2026 Farmio. All rights reserved.</p>
+  <p class="quote">"If the farmer is rich, then so is the nation."</p>
+  <p class="copyright">© 2026 Farmio. All rights reserved.</p>
 </div>
 
 <div id="google_translate_element"></div>
