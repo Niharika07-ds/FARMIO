@@ -4,62 +4,47 @@
 <meta charset="UTF-8">
 <title>Login & Register</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <link rel="stylesheet" href="./login.css">
 </head>
 
 <body>
 
-<!-- SIGN UP -->
+<!-- SIGN UP FORM -->
 <div class="container" id="signup" style="display:none;">
     <h1>Register</h1>
 
-    <input type="text" id="fName" placeholder="First Name">
-    <input type="text" id="lName" placeholder="Last Name">
-    <input type="email" id="rEmail" placeholder="Email">
-    <input type="password" id="rPassword" placeholder="Password">
+    <label for="fName">First Name</label>
+    <input type="text" id="fName" placeholder="Enter First Name">
+
+    <label for="lName">Last Name</label>
+    <input type="text" id="lName" placeholder="Enter Last Name">
+
+    <label for="rEmail">Email</label>
+    <input type="email" id="rEmail" placeholder="Enter Email">
+
+    <label for="rPassword">Password</label>
+    <input type="password" id="rPassword" placeholder="Enter Password">
 
     <button id="submitSignUp">Sign Up</button>
-
-    <p>Already have an account?</p>
-    <button id="signInButton">Sign In</button>
+    <p>Already have an account? <span class="toggle-link" id="signInButton">Sign In</span></p>
 </div>
 
-<!-- SIGN IN -->
-<div class="container" id="signIn">
+<!-- SIGN IN FORM -->
+<div class="container" id="signIn" style="display:block;">
     <h1>Sign In</h1>
 
-    <input type="email" id="email" placeholder="Email">
-    <input type="password" id="password" placeholder="Password">
+    <label for="email">Email</label>
+    <input type="email" id="email" placeholder="Enter Email">
+
+    <label for="password">Password</label>
+    <input type="password" id="password" placeholder="Enter Password">
 
     <button id="submitSignIn">Sign In</button>
-
-    <p>Don’t have an account?</p>
-    <button id="signUpButton">Sign Up</button>
+    <p>Don’t have an account? <span class="toggle-link" id="signUpButton">Sign Up</span></p>
 </div>
 
-<script>
-// Toggle
-const signUpButton = document.getElementById('signUpButton');
-const signInButton = document.getElementById('signInButton');
-const signInForm = document.getElementById('signIn');
-const signUpForm = document.getElementById('signup');
-
-signUpButton.onclick = () => {
-    signInForm.style.display = "none";
-    signUpForm.style.display = "block";
-};
-
-signInButton.onclick = () => {
-    signUpForm.style.display = "none";
-    signInForm.style.display = "block";
-};
-</script>
-
-<!-- FIREBASE -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -67,19 +52,18 @@ import {
   setPersistence,
   browserLocalPersistence
 } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
-
 import {
   getFirestore,
   setDoc,
   doc
 } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
 
-// ✅ YOUR FIREBASE CONFIG
+// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyCiEvlgpEHo2YG-swUgsQzUM3RwYXXM8Jo",
   authDomain: "farmio-30e87.firebaseapp.com",
   projectId: "farmio-30e87",
-  storageBucket: "farmio-30e87.firebasestorage.app",
+  storageBucket: "farmio-30e87.appspot.com",
   messagingSenderId: "619990775055",
   appId: "1:619990775055:web:e3a1e661e8e696cd4c7a7a"
 };
@@ -90,6 +74,21 @@ const db = getFirestore(app);
 
 // Keep login session
 setPersistence(auth, browserLocalPersistence);
+
+// Toggle forms
+const signUpButton = document.getElementById('signUpButton');
+const signInButton = document.getElementById('signInButton');
+const signInForm = document.getElementById('signIn');
+const signUpForm = document.getElementById('signup');
+
+signUpButton.onclick = () => {
+    signInForm.style.display = "none";
+    signUpForm.style.display = "block";
+};
+signInButton.onclick = () => {
+    signUpForm.style.display = "none";
+    signInForm.style.display = "block";
+};
 
 // SIGN UP
 document.getElementById("submitSignUp").addEventListener("click", async () => {
@@ -117,16 +116,14 @@ document.getElementById("submitSignUp").addEventListener("click", async () => {
 
   } catch (err) {
     if (err.code === "auth/email-already-in-use") {
-  alert("Email already registered. Please login.");
-} else if (err.code === "auth/user-not-found") {
-  alert("No account found. Please sign up.");
-} else if (err.code === "auth/wrong-password") {
-  alert("Incorrect password.");
-} else if (err.code === "auth/invalid-email") {
-  alert("Invalid email format.");
-} else {
-  alert(err.message);
-}
+      alert("Email already registered. Please login.");
+    } else if (err.code === "auth/invalid-email") {
+      alert("Invalid email format.");
+    } else if (err.code === "auth/weak-password") {
+      alert("Password should be at least 6 characters.");
+    } else {
+      alert(err.message);
+    }
   }
 });
 
@@ -147,7 +144,15 @@ document.getElementById("submitSignIn").addEventListener("click", async () => {
     window.location.href = "dashboard.html";
 
   } catch (err) {
-    alert(err.message);
+    if (err.code === "auth/user-not-found") {
+      alert("No account found. Please sign up.");
+    } else if (err.code === "auth/wrong-password") {
+      alert("Incorrect password.");
+    } else if (err.code === "auth/invalid-email") {
+      alert("Invalid email format.");
+    } else {
+      alert(err.message);
+    }
   }
 });
 </script>
