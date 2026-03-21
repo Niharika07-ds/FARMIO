@@ -97,22 +97,22 @@ const db = getFirestore(app);
 // Keep user logged in
 setPersistence(auth, browserLocalPersistence);
 
-// Toggle between forms
-const signUpButton = document.getElementById('signUpButton');
-const signInButton = document.getElementById('signInButton');
+// Toggle between forms reliably
+const signUpBtn = document.getElementById('signUpButton');
+const signInBtn = document.getElementById('signInButton');
 const signInForm = document.getElementById('signIn');
 const signUpForm = document.getElementById('signup');
 
-signUpButton.addEventListener('click', () => {
+signUpBtn.addEventListener('click', () => {
     signInForm.style.display = "none";
     signUpForm.style.display = "block";
 });
-signInButton.addEventListener('click', () => {
+signInBtn.addEventListener('click', () => {
     signInForm.style.display = "block";
     signUpForm.style.display = "none";
 });
 
-// Helper function for strict email validation
+// Strict email validation
 function isValidEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
@@ -121,10 +121,16 @@ function isValidEmail(email) {
 // Signup logic
 document.getElementById("submitSignUp").addEventListener("click", async (e) => {
     e.preventDefault();
-    const fName = document.getElementById("fName").value.trim();
-    const lName = document.getElementById("lName").value.trim();
-    const email = document.getElementById("rEmail").value.trim();
-    const password = document.getElementById("rPassword").value;
+
+    const fNameEl = document.getElementById("fName");
+    const lNameEl = document.getElementById("lName");
+    const emailEl = document.getElementById("rEmail");
+    const passwordEl = document.getElementById("rPassword");
+
+    const fName = fNameEl.value.trim();
+    const lName = lNameEl.value.trim();
+    const email = emailEl.value.trim();
+    const password = passwordEl.value;
 
     if (!fName || !lName || !email || !password) { alert("Please fill all fields"); return; }
     if (!isValidEmail(email)) { alert("Please enter a valid email address"); return; }
@@ -133,9 +139,17 @@ document.getElementById("submitSignUp").addEventListener("click", async (e) => {
     try {
         const userCred = await createUserWithEmailAndPassword(auth, email, password);
         await setDoc(doc(db, "users", userCred.user.uid), { firstName: fName, lastName: lName, email });
+
         alert("Account created successfully ✅");
-        fName.value = lName.value = email.value = password.value = "";
-        window.location.href = "login.html"; // or dashboard.html
+
+        // Clear input fields properly
+        fNameEl.value = "";
+        lNameEl.value = "";
+        emailEl.value = "";
+        passwordEl.value = "";
+
+        window.location.href = "login.html";
+
     } catch (err) {
         if (err.code === "auth/email-already-in-use") alert("Email already registered.");
         else if (err.code === "auth/invalid-email") alert("Invalid email format.");
@@ -147,16 +161,26 @@ document.getElementById("submitSignUp").addEventListener("click", async (e) => {
 // Login logic
 document.getElementById("submitSignIn").addEventListener("click", async (e) => {
     e.preventDefault();
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
+
+    const emailEl = document.getElementById("email");
+    const passwordEl = document.getElementById("password");
+
+    const email = emailEl.value.trim();
+    const password = passwordEl.value;
 
     if (!email || !password) { alert("Enter email and password"); return; }
     if (!isValidEmail(email)) { alert("Please enter a valid email address"); return; }
 
     try {
         await signInWithEmailAndPassword(auth, email, password);
+
         alert("Login successful ✅");
-        window.location.href = "dashboard.html"; // your dashboard page
+
+        // Clear login fields
+        emailEl.value = "";
+        passwordEl.value = "";
+
+        window.location.href = "dashboard.html";
     } catch (err) {
         if (err.code === "auth/user-not-found") alert("No account found. Sign up first.");
         else if (err.code === "auth/wrong-password") alert("Incorrect password.");
