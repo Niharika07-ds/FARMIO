@@ -13,7 +13,7 @@
 <!-- SIGNUP FORM -->
 <div class="container" id="signup" style="display:none;">
   <h1 class="form-title">Register</h1>
-  <form>
+  <form id="signupForm">
     <div id="signUpMessage" class="messageDiv" style="display:none;"></div>
 
     <div class="input-group">
@@ -49,7 +49,7 @@
 <!-- LOGIN FORM -->
 <div class="container" id="signIn">
   <h1 class="form-title">Sign In</h1>
-  <form>
+  <form id="loginForm">
     <div id="signInMessage" class="messageDiv" style="display:none;"></div>
 
     <div class="input-group">
@@ -97,7 +97,7 @@ const db = getFirestore(app);
 // Keep user logged in
 setPersistence(auth, browserLocalPersistence);
 
-// Toggle between forms reliably
+// Toggle between forms
 const signUpBtn = document.getElementById('signUpButton');
 const signInBtn = document.getElementById('signInButton');
 const signInForm = document.getElementById('signIn');
@@ -119,7 +119,7 @@ function isValidEmail(email) {
 }
 
 // Signup logic
-document.getElementById("submitSignUp").addEventListener("click", async (e) => {
+document.getElementById("signupForm").addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const fNameEl = document.getElementById("fName");
@@ -132,17 +132,28 @@ document.getElementById("submitSignUp").addEventListener("click", async (e) => {
     const email = emailEl.value.trim();
     const password = passwordEl.value;
 
-    if (!fName || !lName || !email || !password) { alert("Please fill all fields"); return; }
-    if (!isValidEmail(email)) { alert("Please enter a valid email address"); return; }
-    if (password.length < 6) { alert("Password must be at least 6 characters"); return; }
+    if (!fName || !lName || !email || !password) {
+        alert("Please fill all fields");
+        return;
+    }
+
+    if (!isValidEmail(email)) {
+        alert("Please enter a valid email address");
+        return;
+    }
+
+    if (password.length < 6) {
+        alert("Password must be at least 6 characters");
+        return;
+    }
 
     try {
         const userCred = await createUserWithEmailAndPassword(auth, email, password);
+
         await setDoc(doc(db, "users", userCred.user.uid), { firstName: fName, lastName: lName, email });
 
         alert("Account created successfully ✅");
 
-        // Clear input fields properly
         fNameEl.value = "";
         lNameEl.value = "";
         emailEl.value = "";
@@ -159,7 +170,7 @@ document.getElementById("submitSignUp").addEventListener("click", async (e) => {
 });
 
 // Login logic
-document.getElementById("submitSignIn").addEventListener("click", async (e) => {
+document.getElementById("loginForm").addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const emailEl = document.getElementById("email");
@@ -176,7 +187,6 @@ document.getElementById("submitSignIn").addEventListener("click", async (e) => {
 
         alert("Login successful ✅");
 
-        // Clear login fields
         emailEl.value = "";
         passwordEl.value = "";
 
