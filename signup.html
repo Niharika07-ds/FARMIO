@@ -138,8 +138,9 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 // ✅ Strict email validation
+// Stricter email validation to prevent numbers-only emails
 function isValidEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const re = /^[a-zA-Z][a-zA-Z0-9._%+-]*@[a-zA-Z.-]+\.[a-zA-Z]{2,}$/;
     return re.test(email);
 }
 
