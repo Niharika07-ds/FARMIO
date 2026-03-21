@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sign Up - Famio</title>
+<title>Sign Up - Farmio</title>
 
 <style>
 * {
@@ -53,7 +53,7 @@ body {
     border-bottom-color: #1a73e8;
 }
 
-.signup-card button.main-btn {
+.signup-card button {
     width: 100%;
     padding: 12px;
     background: #1a73e8;
@@ -65,38 +65,8 @@ body {
     margin-top: 10px;
 }
 
-.signup-card button.main-btn:hover {
+.signup-card button:hover {
     background: #0f5fd8;
-}
-
-.divider {
-    font-size: 12px;
-    color: #999;
-    margin: 20px 0 10px;
-}
-
-.social-buttons {
-    display: flex;
-    gap: 12px;
-}
-
-.social {
-    flex: 1;
-    padding: 10px;
-    border-radius: 4px;
-    font-size: 14px;
-    cursor: pointer;
-    border: none;
-}
-
-.social.google {
-    background: white;
-    border: 1px solid #ddd;
-}
-
-.social.facebook {
-    background: #1877f2;
-    color: white;
 }
 
 .signin-link {
@@ -115,30 +85,21 @@ body {
 
 <div class="signup-card">
     <h2>Sign up</h2>
-    <p>Sign up to continue</p>
+    <p>Create your account</p>
 
-    <!-- Email/Password Signup (optional, frontend only) -->
-<form onsubmit="signup(event)">
-    <input id="fname" type="text" placeholder="First Name" required>
-    <input id="lname" type="text" placeholder="Last Name" required>
-    <input id="email" type="email" placeholder="Email" required>
-    <input id="password" type="password" placeholder="Password" required>
-    <button type="submit" class="main-btn">Sign up</button>
-</form>
-
-    <div class="divider">ACCESS QUICKLY</div>
-
-    <div class="social-buttons">
-        <button class="social google" onclick="googleLogin()">Google</button>
-        <button class="social facebook" onclick="facebookLogin()">Facebook</button>
-    </div>
+    <form onsubmit="signup(event)">
+        <input id="fname" type="text" placeholder="First Name" required>
+        <input id="lname" type="text" placeholder="Last Name" required>
+        <input id="email" type="email" placeholder="Email" required>
+        <input id="password" type="password" placeholder="Password" required>
+        <button type="submit">Sign up</button>
+    </form>
 
     <div class="signin-link">
         Already have an account? <a href="login.html">Sign in</a>
     </div>
 </div>
 
-<!-- Firebase -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
 
@@ -153,7 +114,7 @@ import {
   setDoc 
 } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
 
-// ✅ YOUR REAL FIREBASE CONFIG
+// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyCiEvlgpEHo2YG-swUgsQzUM3RwYXXM8Jo",
   authDomain: "farmio-30e87.firebaseapp.com",
@@ -167,19 +128,29 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// ✅ SIGNUP FUNCTION
+// Signup function
 window.signup = async function (event) {
-  event.preventDefault(); // STOP PAGE RELOAD
+  event.preventDefault();
 
-  const fname = document.getElementById("fname").value;
-  const lname = document.getElementById("lname").value;
+  const fname = document.getElementById("fname").value.trim();
+  const lname = document.getElementById("lname").value.trim();
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value;
+
+  // Validation
+  if (!fname || !lname || !email || !password) {
+    alert("Please fill all fields");
+    return;
+  }
+
+  if (password.length < 6) {
+    alert("Password must be at least 6 characters");
+    return;
+  }
 
   try {
     const userCred = await createUserWithEmailAndPassword(auth, email, password);
 
-    // Save extra user data
     await setDoc(doc(db, "users", userCred.user.uid), {
       firstName: fname,
       lastName: lname,
@@ -187,6 +158,13 @@ window.signup = async function (event) {
     });
 
     alert("Account created successfully ✅");
+
+    // Clear fields
+    document.getElementById("fname").value = "";
+    document.getElementById("lname").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("password").value = "";
+
     window.location.href = "login.html";
 
   } catch (error) {
@@ -194,5 +172,6 @@ window.signup = async function (event) {
   }
 };
 </script>
+
 </body>
 </html>
