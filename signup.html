@@ -123,12 +123,12 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/fireba
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
 import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
 
-// Firebase config
+// ✅ Firebase config (storageBucket fixed)
 const firebaseConfig = {
   apiKey: "AIzaSyCiEvlgpEHo2YG-swUgsQzUM3RwYXXM8Jo",
   authDomain: "farmio-30e87.firebaseapp.com",
   projectId: "farmio-30e87",
-  storageBucket: "farmio-30e87.appspot.com"
+  storageBucket: "farmio-30e87.appspot.com",
   messagingSenderId: "619990775055",
   appId: "1:619990775055:web:e3a1e661e8e696cd4c7a7a"
 };
@@ -136,6 +136,12 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+
+// ✅ Helper: strict email validation
+function isValidEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+}
 
 // Signup function
 window.signup = async function(event) {
@@ -148,6 +154,11 @@ window.signup = async function(event) {
 
     if (!fname || !lname || !email || !password) {
         alert("Please fill all fields");
+        return;
+    }
+
+    if (!isValidEmail(email)) {
+        alert("Please enter a valid email address");
         return;
     }
 
@@ -173,8 +184,7 @@ window.signup = async function(event) {
         document.getElementById("email").value = "";
         document.getElementById("password").value = "";
 
-        // Redirect to login page
-        window.location.href = "login.html";
+        window.location.href = "login.html"; // Redirect to login
 
     } catch (error) {
         if (error.code === "auth/email-already-in-use") {
